@@ -1,0 +1,82 @@
+{
+  "id": "noelle",
+  "name": "Noëlle FOUCONNIER",
+  "load": 1,
+  "travel": "",
+  "leave": "31 août au 11 septembre",
+  "remark": "",
+  "activities": [
+    {
+      "category": "Couverture radio",
+      "customCategory": "",
+      "title": "Études de couverture",
+      "done": "Réalisation d’études de couverture. Expertise Air/Sol.",
+      "future": "",
+      "effort": "light",
+      "id": "noelle-s01"
+    },
+    {
+      "category": "Activité Labo",
+      "customCategory": "",
+      "title": "Labos N001 / N002",
+      "done": "Inventaire, tri et rangement des labos N001 et N002.",
+      "future": "Finalisation du tri et rangement des labos.",
+      "effort": "light",
+      "id": "noelle-s02"
+    },
+    {
+      "category": "AAV",
+      "customCategory": "",
+      "title": "Station expérimentale DTI",
+      "done": "Rénovation de la station expérimentale DTI. Visite de la station avec INEO. Finalisation de la documentation technique avec INEO.",
+      "future": "Tri et rangement de la station DTI avant le début des travaux.",
+      "effort": "light",
+      "id": "noelle-s03"
+    },
+    {
+      "category": "Prérequis CATIA",
+      "customCategory": "",
+      "title": "CATIA Marseille",
+      "done": "Prérequis CATIA Marseille, diverses réunions.",
+      "future": "",
+      "effort": "light",
+      "id": "noelle-s04"
+    },
+    {
+      "category": "EB",
+      "customCategory": "",
+      "title": "EB 32784 / EB 32155",
+      "done": "EB 32784 : désengagement DSNA de Merville et Albert Bray. Suivi de l’avancement des différentes EB.",
+      "future": "Réunion EB 32784 le 16/09. Réunion EB 32155 le 28/09.",
+      "effort": "light",
+      "id": "noelle-s05"
+    },
+    {
+      "category": "FFT",
+      "customCategory": "",
+      "title": "FFT",
+      "done": "Étude des FFT concernant la perte de session SIP suite à des coupures SFR. FFT Pic du Midi.",
+      "future": "",
+      "effort": "light",
+      "id": "noelle-s06"
+    },
+    {
+      "category": "AAV",
+      "customCategory": "",
+      "title": "Figari",
+      "done": "Écoute de nouveaux enregistrements. Réunion avec les contrôleurs pour discuter de la mise en place du DS9000 à des fins de tests.",
+      "future": "",
+      "effort": "light",
+      "id": "noelle-s07"
+    },
+    {
+      "category": "AAV",
+      "customCategory": "",
+      "title": "Tanville",
+      "done": "Modernisation AA Tanville.",
+      "future": "",
+      "effort": "light",
+      "id": "noelle-s08"
+    }
+  ]
+}
