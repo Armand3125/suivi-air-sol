@@ -1,0 +1,109 @@
+{
+  "id": "menouer",
+  "name": "Menouer ZAOUI",
+  "load": 1,
+  "travel": "",
+  "leave": "",
+  "remark": "",
+  "activities": [
+    {
+      "category": "Chargeur ELTEK",
+      "customCategory": "",
+      "title": "Tanville",
+      "done": "Suivi de l’installation des chargeurs 24 V dans le cadre de la rénovation de Tanville.",
+      "future": "",
+      "effort": "light",
+      "id": "menouer-s01"
+    },
+    {
+      "category": "Activité Labo",
+      "customCategory": "",
+      "title": "Cavités / TELERAD",
+      "done": "Refaire des tests de réglage des cavités TELERAD pour bien les manipuler et maîtriser leur réglage.",
+      "future": "Réaliser le calibrage avec un autre modèle de cavité et rédiger un mode d’emploi adapté.",
+      "effort": "light",
+      "id": "menouer-s02"
+    },
+    {
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "Tanville AA",
+      "done": "Installation des deux couronnes d’antennes UHF terminée. Travaux correctifs et remplacement des balises effectués ; rapport reçu.",
+      "future": "",
+      "effort": "light",
+      "id": "menouer-s03"
+    },
+    {
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "Le Bourget CERD",
+      "done": "Antenne directive d’expérimentation installée.",
+      "future": "Attente du devis Eiffage pour engager les travaux définitifs.",
+      "effort": "light",
+      "id": "menouer-s04"
+    },
+    {
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "Grand Ballon AA",
+      "done": "Travaux de peinture réalisés ; rapport reçu.",
+      "future": "",
+      "effort": "light",
+      "id": "menouer-s05"
+    },
+    {
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "Col del Tap CED / CRD",
+      "done": "Visite technique réalisée. Proposition tarifaire en cours d’analyse.",
+      "future": "Date d’intervention à confirmer.",
+      "effort": "light",
+      "id": "menouer-s06"
+    },
+    {
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "Mérignac CRS",
+      "done": "Diagnostic et contrôle réalisés. Bon de commande transmis à Eiffage.",
+      "future": "Intervention planifiée semaine 38.",
+      "effort": "light",
+      "id": "menouer-s07"
+    },
+    {
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "Saint-Saulge AA",
+      "done": "Bon de commande reçu par Eiffage.",
+      "future": "Attente de la date d’intervention.",
+      "effort": "light",
+      "id": "menouer-s08"
+    },
+    {
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "CDG Nord CED / CRD",
+      "done": "Travaux correctifs commandés.",
+      "future": "Interventions de la semaine 38 à la semaine 41.",
+      "effort": "light",
+      "id": "menouer-s09"
+    },
+    {
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "Limoges Cognac-la-Forêt",
+      "done": "Poursuite du suivi du nouveau pylône.",
+      "future": "Poursuite des travaux du massif.",
+      "effort": "light",
+      "id": "menouer-s10"
+    },
+    {
+      "category": "AAV",
+      "customCategory": "",
+      "title": "Poitiers – architecture radio",
+      "done": "Dysfonctionnements identifiés. Nouvelle architecture élaborée.",
+      "future": "Validation et visites techniques à Poitiers, Châteauroux et La Châtre.",
+      "effort": "light",
+      "id": "menouer-s11"
+    }
+  ]
+}
