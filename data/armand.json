@@ -1,0 +1,82 @@
+{
+  "id": "armand",
+  "name": "Armand JULIEN",
+  "load": 1,
+  "travel": "",
+  "leave": "15 au 22 septembre",
+  "remark": "",
+  "activities": [
+    {
+      "category": "Chargeur ELTEK",
+      "customCategory": "",
+      "title": "Hanvec",
+      "done": "",
+      "future": "Chargeur d’Hanvec à venir.",
+      "effort": "light",
+      "id": "armand-s01"
+    },
+    {
+      "category": "Couverture radio",
+      "customCategory": "",
+      "title": "Radio mobile / couverture",
+      "done": "Tracés de couverture / radio mobile. Référence fréquences : mise à jour du document.",
+      "future": "",
+      "effort": "light",
+      "id": "armand-s02"
+    },
+    {
+      "category": "Activité Labo",
+      "customCategory": "",
+      "title": "Outils / labo",
+      "done": "Évolution des outils développés. Rangement / suivi labo.",
+      "future": "Recette TELERAD à prévoir.",
+      "effort": "light",
+      "id": "armand-s03"
+    },
+    {
+      "category": "AAV",
+      "customCategory": "",
+      "title": "La Réunion",
+      "done": "Commande TDF à finaliser.",
+      "future": "FUR à suivre avec Thomas Hupkes.",
+      "effort": "light",
+      "id": "armand-s04"
+    },
+    {
+      "category": "Intermodulation",
+      "customCategory": "",
+      "title": "Bastia",
+      "done": "Suivi du sujet. Aide aux réglages des cavités Mont-Leuze à confirmer.",
+      "future": "",
+      "effort": "light",
+      "id": "armand-s05"
+    },
+    {
+      "category": "AAV",
+      "customCategory": "",
+      "title": "SPM",
+      "done": "Vérification de la demande d’équipement.",
+      "future": "Poursuite du suivi du sujet.",
+      "effort": "light",
+      "id": "armand-s06"
+    },
+    {
+      "category": "AAV",
+      "customCategory": "",
+      "title": "Tours Monthodon",
+      "done": "Suivi du dossier.",
+      "future": "",
+      "effort": "light",
+      "id": "armand-s07"
+    },
+    {
+      "category": "AAV",
+      "customCategory": "",
+      "title": "Station expérimentale DTI",
+      "done": "Suivi du dossier avec Noëlle. Visite INEO. Mise à jour de la note technique avec Noëlle.",
+      "future": "",
+      "effort": "light",
+      "id": "armand-s08"
+    }
+  ]
+}
