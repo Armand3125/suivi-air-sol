@@ -1,0 +1,46 @@
+{
+  "id": "vincent",
+  "name": "Vincent MONTI",
+  "load": 1,
+  "travel": "",
+  "leave": "",
+  "remark": "Périmètre à confirmer lors de son arrivée.",
+  "activities": [
+    {
+      "category": "AAV",
+      "customCategory": "",
+      "title": "CATIA Nantes",
+      "done": "Pilotage des déploiements sur le projet MARS.",
+      "future": "",
+      "effort": "light",
+      "id": "vincent-s01"
+    },
+    {
+      "category": "AAV",
+      "customCategory": "",
+      "title": "CATIA Lyon",
+      "done": "Pilotage des déploiements sur le projet MARS.",
+      "future": "",
+      "effort": "light",
+      "id": "vincent-s02"
+    },
+    {
+      "category": "Prérequis CATIA",
+      "customCategory": "",
+      "title": "FH",
+      "done": "Chargé d’affaires pour les déploiements et modernisations FH.",
+      "future": "",
+      "effort": "light",
+      "id": "vincent-s03"
+    },
+    {
+      "category": "Prérequis CATIA",
+      "customCategory": "",
+      "title": "FUR",
+      "done": "Rédaction FUR.",
+      "future": "",
+      "effort": "light",
+      "id": "vincent-s04"
+    }
+  ]
+}
