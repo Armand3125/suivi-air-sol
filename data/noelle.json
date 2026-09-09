@@ -31,7 +31,7 @@
       "title": "Station expérimentale DTI",
       "done": "Rénovation de la station expérimentale DTI. Visite de la station avec INEO. Finalisation de la documentation technique avec INEO.",
       "future": "Tri et rangement de la station DTI avant le début des travaux.",
-      "effort": "light"
+      "effort": "heavy"
     },
     {
       "id": "noelle-s04",
