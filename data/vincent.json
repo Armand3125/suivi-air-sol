@@ -50,6 +50,15 @@
       "done": "Prise en main\nLecture document",
       "future": "Reunion site le 12 oct",
       "effort": "heavy"
+    },
+    {
+      "id": "id_rqa7ry4s",
+      "category": "Autre",
+      "customCategory": "Formation",
+      "title": "Lecture Doc Air Sol",
+      "done": "Doctrine Air Sol\nCohabitation Radar",
+      "future": "",
+      "effort": "heavy"
     }
   ]
 }
