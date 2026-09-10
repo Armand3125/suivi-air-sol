@@ -7,15 +7,6 @@
   "remark": "Périmètre à confirmer lors de son arrivée.",
   "activities": [
     {
-      "id": "vincent-s01",
-      "category": "Prérequis CATIA",
-      "customCategory": "",
-      "title": "CATIA Nantes",
-      "done": "Pilotage des déploiements sur le projet MARS.",
-      "future": "",
-      "effort": "light"
-    },
-    {
       "id": "vincent-s02",
       "category": "Prérequis CATIA",
       "customCategory": "",
