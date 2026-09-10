@@ -7,40 +7,49 @@
   "remark": "Périmètre à confirmer lors de son arrivée.",
   "activities": [
     {
+      "id": "vincent-s01",
       "category": "AAV",
       "customCategory": "",
       "title": "CATIA Nantes",
       "done": "Pilotage des déploiements sur le projet MARS.",
       "future": "",
-      "effort": "light",
-      "id": "vincent-s01"
+      "effort": "light"
     },
     {
+      "id": "vincent-s02",
       "category": "AAV",
       "customCategory": "",
       "title": "CATIA Lyon",
       "done": "Pilotage des déploiements sur le projet MARS.",
       "future": "",
-      "effort": "light",
-      "id": "vincent-s02"
+      "effort": "light"
     },
     {
+      "id": "vincent-s03",
       "category": "Prérequis CATIA",
       "customCategory": "",
       "title": "FH",
       "done": "Chargé d’affaires pour les déploiements et modernisations FH.",
       "future": "",
-      "effort": "light",
-      "id": "vincent-s03"
+      "effort": "light"
     },
     {
+      "id": "vincent-s04",
       "category": "Prérequis CATIA",
       "customCategory": "",
       "title": "FUR",
       "done": "Rédaction FUR.",
       "future": "",
-      "effort": "light",
-      "id": "vincent-s04"
+      "effort": "light"
+    },
+    {
+      "id": "id_zdlhpjwb",
+      "category": "Prérequis CATIA",
+      "customCategory": "",
+      "title": "Lille",
+      "done": "Prise en main\nLecture document",
+      "future": "Reunion site le 12 oct",
+      "effort": "heavy"
     }
   ]
 }
