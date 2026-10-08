@@ -95,6 +95,15 @@
       "done": "Réunion de présentation des différents site avec Guillaume Lenoirdespinasse",
       "future": "Réaliser un état des lieux complet des différents sites AAv concernés par CATIA Lille, ainsi que des sites exploitants qui en dépendent, afin de pouvoir rédiger les FUR nécessaires.",
       "effort": "light"
+    },
+    {
+      "id": "id_ijtcn11x",
+      "category": "Formation",
+      "customCategory": "",
+      "title": "CVL",
+      "done": "Formation nouvel arrivant CVL du 05/10 au 09/10/2026",
+      "future": "",
+      "effort": "light"
     }
   ]
 }
