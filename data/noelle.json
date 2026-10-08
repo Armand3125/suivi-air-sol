@@ -77,6 +77,15 @@
       "done": "NA",
       "future": "Réunion EB 32155 le 28/09.",
       "effort": "light"
+    },
+    {
+      "id": "id_9obxbh56",
+      "category": "EB",
+      "customCategory": "",
+      "title": "EB 43840",
+      "done": "Relecture de l'étude et réunion avec les collaborateurs concernés",
+      "future": "Rédaction et publication du document dans GEODE",
+      "effort": "light"
     }
   ]
 }
