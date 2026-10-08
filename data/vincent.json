@@ -59,6 +59,15 @@
       "done": "- Formation Nouveaux Arrivants CVL",
       "future": "- Habilitation électrique du 12 au 13/11",
       "effort": "light"
+    },
+    {
+      "id": "id_6dtmdfne",
+      "category": "AAV",
+      "customCategory": "",
+      "title": "Station Expérimentale DTI",
+      "done": "",
+      "future": "- Nettoyage de la station",
+      "effort": "light"
     }
   ]
 }
