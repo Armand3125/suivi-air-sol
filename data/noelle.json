@@ -95,6 +95,15 @@
       "done": "Diverses réunions avec TRS suite a une EB, problème de raccordement opérateur",
       "future": "Mettre en place un processus lors des études de couverture radio afin de recueillir l’avis de TRS et de prendre en compte les contraintes opérateurs propres à chaque site, avant de finaliser l’étude et de proposer une solution aux différents acteurs concernés.",
       "effort": "light"
+    },
+    {
+      "id": "id_ehov2rve",
+      "category": "Prérequis CATIA",
+      "customCategory": "",
+      "title": "CATIA Lille",
+      "done": "Réunion de présentation des différents site avec Guillaume Lenoirdespinasse",
+      "future": "Réaliser un état des lieux complet des différents sites AAv concernés par CATIA Lille, ainsi que des sites exploitants qui en dépendent, afin de pouvoir rédiger les FUR nécessaires.",
+      "effort": "light"
     }
   ]
 }
