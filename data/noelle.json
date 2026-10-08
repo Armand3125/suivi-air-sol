@@ -95,6 +95,15 @@
       "done": "Plusieurs réunions pour présenter les différentes phases des projets CATIA",
       "future": "",
       "effort": "light"
+    },
+    {
+      "id": "id_fhc6t1ne",
+      "category": "AAV",
+      "customCategory": "",
+      "title": "La châtre",
+      "done": "Diverses réunions avec TRS suite a une EB, problème de raccordement opérateur",
+      "future": "Mettre en place un processus lors des études de couverture radio afin de recueillir l’avis de TRS et de prendre en compte les contraintes opérateurs propres à chaque site, avant de finaliser l’étude et de proposer une solution aux différents acteurs concernés.",
+      "effort": "light"
     }
   ]
 }
