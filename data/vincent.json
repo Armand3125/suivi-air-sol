@@ -41,6 +41,15 @@
       "done": "COPROJ NVCS n°12 \nModernisation Etampes-Champcueil\nModernisation Trigny réunion n°2\nRéunion besoin switch CRD Blagnac\nProjet MARS - Réunion de lancement - prérequis réseaux au projet CATIA pour les stations radio",
       "future": "",
       "effort": "light"
+    },
+    {
+      "id": "id_3pzfn84q",
+      "category": "AAV",
+      "customCategory": "",
+      "title": "AAv Tanville",
+      "done": "Récupération FUR-2026-098 auprès de TRS\nRédaction du Visio \"Schéma AIR-SOL Architecture Actuelle AAv Tanville\"",
+      "future": "Confirmer l'architecture auprès de TRS pour rédiger les schémas Visio d'architecture Transitoire et Cible",
+      "effort": "light"
     }
   ]
 }
