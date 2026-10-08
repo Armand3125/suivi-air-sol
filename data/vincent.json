@@ -47,8 +47,8 @@
       "category": "AAV",
       "customCategory": "",
       "title": "AAv Tanville",
-      "done": "Récupération FUR-2026-098 auprès de TRS\nRédaction du Visio \"Schéma AIR-SOL Architecture Actuelle AAv Tanville\"",
-      "future": "Confirmer l'architecture auprès de TRS pour rédiger les schémas Visio d'architecture Transitoire et Cible",
+      "done": "- Récupération FUR-2026-098 auprès de TRS\n- Rédaction du Visio \"Schéma AIR-SOL Architecture Actuelle AAv Tanville\"",
+      "future": "- Confirmer l'architecture auprès de TRS pour rédiger les schémas Visio d'architecture Transitoire et Cible",
       "effort": "light"
     }
   ]
