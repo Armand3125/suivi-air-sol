@@ -50,6 +50,15 @@
       "done": "- Récupération FUR-2026-098 auprès de TRS\n- Rédaction du Visio \"Schéma AIR-SOL Architecture Actuelle AAv Tanville\"",
       "future": "- Confirmer l'architecture auprès de TRS pour rédiger les schémas Visio d'architecture Transitoire et Cible",
       "effort": "light"
+    },
+    {
+      "id": "id_ami8451y",
+      "category": "Formation",
+      "customCategory": "",
+      "title": "Formation",
+      "done": "- Formation Nouveaux Arrivants CVL",
+      "future": "- Habilitation électrique 12-13/11",
+      "effort": "light"
     }
   ]
 }
