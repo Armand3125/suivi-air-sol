@@ -1,6 +1,39 @@
-/* Aquarium V1R2 — réseau prioritaire pour la fraîcheur des données */
-const SHELL='aquarium-v1r2-shell',TILES='aquarium-v1r2-tiles';
-const PRECACHE=["./","./index.html","./aquarium.css","./sia-manifest.json","./sia-01.json","./sia-02.json","./sia-03.json","./sia-04.json","./sia-05.json","./sia-06.json","./sia-07.json","./sia-08.json","./sia-09.json","./sia-10.json","./sia-11.json","./sia-12.json","./sia-13.json","./sia-14.json","./icon.svg","./icon-192.png","./icon-512.png","./manifest.webmanifest","https://unpkg.com/leaflet@1.9.4/dist/leaflet.css","https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"];
-self.addEventListener('install',e=>e.waitUntil((async()=>{const c=await caches.open(SHELL);await Promise.allSettled(PRECACHE.map(x=>c.add(x)));await self.skipWaiting()})()));
-self.addEventListener('activate',e=>e.waitUntil((async()=>{for(const k of await caches.keys())if(k.startsWith('aquarium-')&&k!==SHELL&&k!==TILES)await caches.delete(k);await self.clients.claim()})()));
-self.addEventListener('fetch',e=>{const req=e.request;if(req.method!=='GET')return;const url=new URL(req.url);const isTile=/basemaps\.cartocdn\.com|tile\.openstreetmap\.org|data\.geopf\.fr|server\.arcgisonline\.com/.test(url.hostname);if(isTile){e.respondWith((async()=>{const c=await caches.open(TILES),cached=await c.match(req);if(cached)return cached;const r=await fetch(req);if(r.ok||r.type==='opaque')c.put(req,r.clone()).then(async()=>{const keys=await c.keys();if(keys.length>130)await c.delete(keys[0])}).catch(()=>{});return r})());return}if(url.origin===self.location.origin||url.hostname==='unpkg.com'){e.respondWith((async()=>{const c=await caches.open(SHELL);try{const r=await fetch(req);if(r.ok)await c.put(req,r.clone());return r}catch(err){const old=await c.match(req,{ignoreSearch:true});if(old)return old;throw err}})())}});
+/* Aquarium V1R3 : ne jamais intercepter ni sur-cacher les tuiles externes.
+   Les caches v1r2 contenant des tuiles CARTO filigranées sont purgés. */
+const SHELL='aquarium-v1r3-shell';
+const CORE=['./','./index.html','./aquarium.css?v=V1R3','./sia-manifest.json','./icon.svg','./icon-192.png','./icon-512.png','./manifest.webmanifest'];
+for(let i=1;i<=14;i++)CORE.push('./sia-'+String(i).padStart(2,'0')+'.json');
+self.addEventListener('install',event=>{
+ event.waitUntil((async()=>{
+  const cache=await caches.open(SHELL);
+  await Promise.allSettled(CORE.map(resource=>cache.add(resource)));
+  await self.skipWaiting();
+ })());
+});
+self.addEventListener('activate',event=>{
+ event.waitUntil((async()=>{
+  const keys=await caches.keys();
+  await Promise.all(keys.filter(k=>k.startsWith('aquarium-')&&k!==SHELL).map(k=>caches.delete(k)));
+  await self.clients.claim();
+ })());
+});
+self.addEventListener('fetch',event=>{
+ const request=event.request;
+ if(request.method!=='GET')return;
+ const url=new URL(request.url);
+ // Les serveurs OSM, IGN et Esri gèrent directement leur propre cache HTTP.
+ // Laisser le navigateur les requêter (aucun préchargement ni cache offline artificiel).
+ if(url.origin!==self.location.origin)return;
+ event.respondWith((async()=>{
+  const cache=await caches.open(SHELL);
+  try{
+   const response=await fetch(request);
+   if(response.ok)cache.put(request,response.clone()).catch(()=>{});
+   return response;
+  }catch(err){
+   const cached=await cache.match(request,{ignoreSearch:true});
+   if(cached)return cached;
+   throw err;
+  }
+ })());
+});
