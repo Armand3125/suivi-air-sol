@@ -2,8 +2,8 @@
   "id": "./",
   "name": "Volière — Atlas SIA",
   "short_name": "Volière",
-  "description": "Volière V1R8 — Atlas SIA mobile, couches désactivées par défaut et secteurs non remplis",
-  "start_url": "./index-v1r8.html",
+  "description": "Volière V1R9 — logo oiseau minimaliste et recherche optimisée pour le clavier mobile",
+  "start_url": "./index-v1r9.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
@@ -11,7 +11,7 @@
   "theme_color": "#082c38",
   "icons": [
     {
-      "src": "./icon.svg",
+      "src": "./icon.svg?v=V1R9",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
