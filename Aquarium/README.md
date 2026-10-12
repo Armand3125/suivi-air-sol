@@ -1,5 +1,16 @@
 # Aquarium — V1R4
 
+## Publication GitHub Pages (méthode classique)
+La branche **gh-pages** est préparée et contient tous les fichiers d'Aquarium V1R4.
+La publication ne nécessite **aucun workflow GitHub Actions**.
+
+Activation initiale dans les paramètres du dépôt :
+Settings → Pages → Build and deployment → Source **Deploy from a branch** → Branch **gh-pages** → Dossier **/ (root)** → Save.
+
+Adresse après activation : **https://armand3125.github.io/suivi-air-sol/Aquarium/**
+
+Ne pas employer de lien RawGitHack pour l'installation mobile : c'est un proxy tiers qui peut figer l'ancienne révision et bloquer les images. Un workflow précédent a échoué car Pages n'était pas activé ; il a été supprimé du dépôt.
+
 **Ouvrir Aquarium sur téléphone (accès direct aux fichiers GitHub, sans activation de Pages) :**
 
 **https://raw.githack.com/Armand3125/suivi-air-sol/main/Aquarium/index.html**
