@@ -77,7 +77,7 @@ let baseKey='ocean',baseLayer;
 const map=L.map('map',{center:[46.5,2.2],zoom:6,zoomControl:false,preferCanvas:true,zoomSnap:.5,worldCopyJump:true});
 L.control.zoom({position:'topleft'}).addTo(map);
 function setBase(key){if(!tiles[key])return;const t=tiles[key];if(baseLayer)map.removeLayer(baseLayer);baseLayer=L.tileLayer(t.url,{...t.options,keepBuffer:2,crossOrigin:true}).addTo(map);baseLayer.bringToBack();baseKey=key;try{localStorage.setItem('aquarium-fond',key)}catch{}}
-try{const saved=localStorage.getItem('biome-poche-fond');setBase(tiles[saved]?saved:'ocean')}catch{setBase('ocean')}
+try{const saved=localStorage.getItem('aquarium-fond');setBase(tiles[saved]?saved:'ocean')}catch{setBase('ocean')}
 const sectorGroup=L.layerGroup().addTo(map),pointGroup=L.layerGroup().addTo(map),lineGroup=L.layerGroup().addTo(map),highlightGroup=L.layerGroup().addTo(map);
 const layerById=new Map();
 function inform(message,timeout=2700){$('notice').textContent=message;$('notice').classList.add('show');clearTimeout(notifyTimer);notifyTimer=setTimeout(()=>$('notice').classList.remove('show'),timeout)}
