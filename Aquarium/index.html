@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="description" content="Aquarium — atlas aéronautique SIA mobile, cartes 2D, secteurs et recherche rapide.">
-  <title>Aquarium V1R3</title>
+  <title>Aquarium V1R4</title>
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon.svg">
   <link rel="manifest" href="manifest.webmanifest">
@@ -27,13 +27,13 @@
   @media(max-height:660px){.brandrow{display:none}.leaflet-top.leaflet-left{top:68px}.top{gap:0}#welcome{display:none}}
   @media(prefers-reduced-motion:reduce){.sheet{transition:none}}
   </style>
-<link rel="stylesheet" href="./aquarium.css?v=V1R3">
+<link rel="stylesheet" href="./aquarium.css?v=V1R4">
 </head>
 <body>
 <div class="ocean-halo" aria-hidden="true"></div>
 <div id="map" aria-label="Carte interactive des données aéronautiques SIA"></div>
 <header class="top">
- <div class="brandrow"><div class="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 27c7-10 18-10 25 0" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M12 33c6-7 14-7 20 0" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="22" cy="15" r="5" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="9" r="2.3" fill="currentColor"/><circle cx="36" cy="14" r="1.5" fill="currentColor"/></svg></span><div><div class="brandname">AQUARIUM</div><small>ATLAS SIA · V1R2</small></div></div><div class="datastamp"><i id="statusDot" class="dot"></i><span id="statusText">Chargement SIA…</span></div></div>
+ <div class="brandrow"><div class="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 27c7-10 18-10 25 0" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M12 33c6-7 14-7 20 0" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="22" cy="15" r="5" stroke="currentColor" stroke-width="2.5"/><circle cx="30" cy="9" r="2.3" fill="currentColor"/><circle cx="36" cy="14" r="1.5" fill="currentColor"/></svg></span><div><div class="brandname">AQUARIUM</div><small>ATLAS SIA · V1R4</small></div></div><div class="datastamp"><i id="statusDot" class="dot"></i><span id="statusText">Chargement SIA…</span></div></div>
  <div class="searchbar">
   <svg class="searchico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><circle cx="10.8" cy="10.8" r="7.3"/><path d="m16 16 5 5"/></svg>
   <input id="searchInput" autocomplete="off" autocapitalize="off" spellcheck="false" type="search" placeholder="Secteur, code OACI, fréquence…" aria-label="Rechercher dans les données SIA">
@@ -56,7 +56,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 (()=>{'use strict';
-const VERSION='V1R3',SIA_FILE='./sia.geojson',DATE_SIA='01/10/2026';
+const VERSION='V1R4',SIA_FILE='./sia.geojson',DATE_SIA='01/10/2026';
 const CONFIG={
  airspaces:{name:'Secteurs',color:'#2aa7b8',visible:true},aerodromes:{name:'Aérodromes',color:'#43c59e',visible:true},heliports:{name:'Héliports',color:'#ffc75f',visible:false},radionav:{name:'RadioNav',color:'#a28dec',visible:false},approach:{name:'ILS',color:'#4bd1dd',visible:false},navfix:{name:'NavFix',color:'#f47a8b',visible:false},routes:{name:'Routes',color:'#f3a660',visible:false},runways:{name:'Pistes',color:'#b6c4d2',visible:false}
 };
@@ -66,18 +66,44 @@ const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,
 const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[’']/g,' ').replace(/[^a-z0-9.]+/g,' ').trim();
 let features=[],groups={},spatial=[],searchIndex=[],selected=null,selectionLayer=null,curPos=null,curPosCircle=null,openPanel='',searchFilter='all',typeFilter='ALL',panelItems=[],dataReady=false,notifyTimer=0,drawTimer=0,searchTimer=0,renderSerial=0,lastTouch=null;
 for(const key of ORDER)groups[key]=[];
-// V1R3 : les fonds CARTO nécessitent désormais une clé API. Des variantes
-// stylisées d'OSM remplacent les deux fonds concernés, sans clé et sans filigrane.
-const OSM_TILES='https://tile.openstreetmap.org/{z}/{x}/{y}.png';
-const OSM_ATTR='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">Contributeurs OpenStreetMap</a>';
+// Aquarium V1R4 : fonds fiables et chargement de secours tuile par tuile.
+const OSM_URL='https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+const ESRI_TOPO='https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}';
+const ESRI_IMAGERY='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+const OSM_ATTR='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>';
+const ESRI_ATTR='&copy; Esri, HERE, Garmin, USGS, Maxar et partenaires';
 const tiles={
- ocean:{name:'Nuit marine',url:OSM_TILES,options:{maxZoom:19,attribution:OSM_ATTR},filter:'night'},
- clair:{name:'Clair',url:OSM_TILES,options:{maxZoom:19,attribution:OSM_ATTR},filter:'light'},
- osm:{name:'OpenStreetMap',url:OSM_TILES,options:{maxZoom:19,attribution:OSM_ATTR}},
- ign:{name:'Plan IGN',url:'https://data.geopf.fr/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&FORMAT=image/png&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}',options:{maxZoom:19,maxNativeZoom:18,attribution:'&copy; IGN / Géoplateforme'}},
- satellite:{name:'Satellite',url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',options:{maxZoom:19,maxNativeZoom:18,attribution:'Tiles &copy; Esri, Maxar, Earthstar Geographics'}}
+ osm:{name:'OpenStreetMap',url:OSM_URL,options:{maxZoom:19,maxNativeZoom:19,attribution:OSM_ATTR+' · '+ESRI_ATTR},backup:ESRI_TOPO},
+ clair:{name:'Clair',url:OSM_URL,options:{maxZoom:19,maxNativeZoom:19,attribution:OSM_ATTR+' · '+ESRI_ATTR},backup:ESRI_TOPO,filter:'light'},
+ ocean:{name:'Nuit marine',url:OSM_URL,options:{maxZoom:19,maxNativeZoom:19,attribution:OSM_ATTR+' · '+ESRI_ATTR},backup:ESRI_TOPO,filter:'night'},
+ ign:{name:'Plan IGN',url:'https://data.geopf.fr/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&FORMAT=image/png&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}',options:{maxZoom:19,maxNativeZoom:18,attribution:'&copy; IGN / Géoplateforme · '+OSM_ATTR+' · '+ESRI_ATTR},backup:OSM_URL,secondBackup:ESRI_TOPO},
+ satellite:{name:'Satellite',url:ESRI_IMAGERY,options:{maxZoom:19,maxNativeZoom:18,attribution:'&copy; Esri, Maxar, Earthstar Geographics · '+OSM_ATTR},backup:OSM_URL}
 };
-let baseKey='ocean',baseLayer,baseErrors=0,baseSuccess=0,baseGeneration=0;
+const ReliableTileLayer=L.TileLayer.extend({
+ createTile(coords,done){
+  const img=document.createElement('img');
+  img.alt='';img.setAttribute('role','presentation');img.style.userSelect='none';
+  const vars={z:coords.z,x:coords.x,y:coords.y};
+  const candidates=[this.getTileUrl(coords)];
+  if(this.options.backup)candidates.push(L.Util.template(this.options.backup,vars));
+  if(this.options.secondBackup)candidates.push(L.Util.template(this.options.secondBackup,vars));
+  let attempt=0,ended=false;
+  const finish=err=>{if(ended)return;ended=true;done(err||null,img)};
+  const next=()=>{
+   if(ended)return;
+   if(attempt>=candidates.length){
+    img.onerror=null;img.onload=null;
+    img.style.background='rgba(158,194,200,.16)';
+    finish(new Error('Toutes les sources de tuiles ont échoué'));return;
+   }
+   img.src=candidates[attempt++];
+  };
+  img.onload=()=>finish(null);
+  img.onerror=()=>next();
+  next();return img;
+ }
+});
+let baseKey='osm',baseLayer,baseGeneration=0,baseErrors=0,baseSuccess=0;
 const map=L.map('map',{center:[46.5,2.2],zoom:6,zoomControl:false,preferCanvas:true,zoomSnap:1,zoomDelta:1,worldCopyJump:true});
 L.control.zoom({position:'topleft'}).addTo(map);
 function setBase(key){
@@ -87,30 +113,22 @@ function setBase(key){
  const canvas=map.getContainer();
  canvas.classList.toggle('aquarium-night-map',t.filter==='night');
  canvas.classList.toggle('aquarium-light-map',t.filter==='light');
- // Ne pas appliquer crossOrigin aux tuiles : des fournisseurs ne renvoient pas CORS.
- const layer=L.tileLayer(t.url,{...t.options,keepBuffer:3,updateWhenIdle:true});
- baseLayer=layer;
- layer.on('tileload',()=>{if(generation===baseGeneration){baseSuccess++;baseErrors=0;}});
- layer.on('tileerror',()=>{
-  if(generation!==baseGeneration)return;
-  baseErrors++;
-  if(baseErrors<4)return;
-  baseErrors=0;
-  if((key==='ign'||key==='satellite')&&baseSuccess===0){
-   inform('Fond '+t.name+' indisponible. Passage à OpenStreetMap.',4200);
-   setBase('osm');
-  }else if(baseSuccess===0){
-   inform('Impossible de charger la carte : vérifie la connexion réseau.',4700);
-  }
- });
- layer.addTo(map);
- layer.bringToBack();
+ baseLayer=new ReliableTileLayer(t.url,{...t.options,backup:t.backup,secondBackup:t.secondBackup,keepBuffer:3,updateWhenIdle:true});
+ baseLayer.on('tileload',()=>{if(generation===baseGeneration)baseSuccess++;});
+ baseLayer.on('tileerror',()=>{if(generation===baseGeneration&&++baseErrors===4){
+  inform('Certaines tuiles ne se chargent pas : vérifie la connexion.',4200);
+ }});
+ baseLayer.addTo(map);
+ baseLayer.bringToBack();
  if(previous&&map.hasLayer(previous))map.removeLayer(previous);
- try{localStorage.setItem('aquarium-fond',key)}catch{}
+ try{localStorage.setItem('aquarium-fond-v1r4',key)}catch{}
 }
-try{const saved=localStorage.getItem('aquarium-fond');setBase(tiles[saved]?saved:'ocean')}catch{setBase('ocean')}
+try{const saved=localStorage.getItem('aquarium-fond-v1r4');setBase(tiles[saved]?saved:'osm')}catch{setBase('osm')}
 let resizePending=0;
-function fixMobileTiles(){if(resizePending)cancelAnimationFrame(resizePending);resizePending=requestAnimationFrame(()=>{resizePending=0;map.invalidateSize({animate:false,pan:false})})}
+function fixMobileTiles(){
+ if(resizePending)cancelAnimationFrame(resizePending);
+ resizePending=requestAnimationFrame(()=>{resizePending=0;map.invalidateSize({animate:false,pan:false})});
+}
 window.addEventListener('orientationchange',fixMobileTiles);
 window.addEventListener('resize',fixMobileTiles,{passive:true});
 if(window.visualViewport)window.visualViewport.addEventListener('resize',fixMobileTiles,{passive:true});
@@ -170,7 +188,7 @@ showPanel('layers','Couches SIA','Choisis les objets à afficher',html);
 document.querySelectorAll('[data-toggle-layer]').forEach(btn=>btn.onclick=()=>{CONFIG[btn.dataset.toggleLayer].visible=!CONFIG[btn.dataset.toggleLayer].visible;$('sectorsBtn').setAttribute('aria-pressed',CONFIG.airspaces.visible);scheduleRender();layerPanel()});
 document.querySelectorAll('[data-sector-type]').forEach(btn=>btn.onclick=()=>{typeFilter=btn.dataset.sectorType;scheduleRender();layerPanel()});
 $('importBtn').onclick=()=>$('importFile').click();$('franceBtn').onclick=()=>{map.setView([46.5,2.2],6);closePanel()};}
-function basePanel(){const html=`<div class="slabel">Choisir un fond de carte</div><div class="resultList">${Object.entries(tiles).map(([k,v])=>`<button type="button" data-base="${k}" class="resultItem"><span class="resultSwatch" style="--swatch:${baseKey===k?'#1b9d6a':'#c4d2e3'}"></span><span><span class="resultTitle">${esc(v.name)} ${baseKey===k?'✓':''}</span><span class="resultMeta">${k==='ocean'?'Contraste et ambiance sous-marine':k==='clair'?'Épuré, idéal pour les secteurs':k==='satellite'?'Imagerie aérienne':k==='ign'?'Fond cartographique français':'Carte générale'}</span></span><span class="arrow">›</span></button>`).join('')}</div><p class="fieldNote">Le fond de carte nécessite une connexion Internet.</p>`;showPanel('base','Fond de carte','Choisir un affichage',html);document.querySelectorAll('[data-base]').forEach(b=>b.onclick=()=>{setBase(b.dataset.base);closePanel()});}
+function basePanel(){const html=`<div class="slabel">Choisir un fond de carte</div><div class="resultList">${Object.entries(tiles).map(([k,v])=>`<button type="button" data-base="${k}" class="resultItem"><span class="resultSwatch" style="--swatch:${baseKey===k?'#1b9d6a':'#c4d2e3'}"></span><span><span class="resultTitle">${esc(v.name)} ${baseKey===k?'✓':''}</span><span class="resultMeta">${k==='ocean'?'Contraste et ambiance sous-marine':k==='clair'?'Épuré, idéal pour les secteurs':k==='satellite'?'Imagerie aérienne':k==='ign'?'Fond cartographique français':'Carte générale'}</span></span><span class="arrow">›</span></button>`).join('')}</div><p class="fieldNote">Si des carrés ne s'affichent pas, le fond essaie automatiquement une autre source. Tu peux aussi recharger les tuiles.</p><div class="btnrow"><button type="button" class="action ghost" id="reloadMapTiles">↻ Recharger les tuiles</button></div>`;showPanel('base','Fond de carte','Choisir un affichage',html);document.querySelectorAll('[data-base]').forEach(b=>b.onclick=()=>{setBase(b.dataset.base);closePanel()});$('reloadMapTiles').onclick=()=>{const current=baseKey;setBase(current);fixMobileTiles();closePanel();inform('Tuiles rechargées',1800)};}
 $('layersBtn').addEventListener('click',layerPanel);$('baseBtn').addEventListener('click',basePanel);$('sectorsBtn').addEventListener('click',()=>{CONFIG.airspaces.visible=!CONFIG.airspaces.visible;$('sectorsBtn').setAttribute('aria-pressed',CONFIG.airspaces.visible);$('sectorsBtn').classList.toggle('active',CONFIG.airspaces.visible);scheduleRender();inform(CONFIG.airspaces.visible?'Secteurs affichés':'Secteurs masqués',1700)});
 $('locateBtn').addEventListener('click',()=>{if(!navigator.geolocation){inform('Géolocalisation non disponible');return}inform('Localisation en cours…');navigator.geolocation.getCurrentPosition(pos=>{const ll=[pos.coords.latitude,pos.coords.longitude];if(curPos)map.removeLayer(curPos);if(curPosCircle)map.removeLayer(curPosCircle);curPosCircle=L.circle(ll,{radius:Math.max(20,pos.coords.accuracy||20),color:'#2ddcc9',weight:1,fillColor:'#4fe4d4',fillOpacity:.08,interactive:false}).addTo(map);curPos=L.marker(ll,{icon:L.divIcon({className:'user-pin',html:'<div class="currentPos"></div>',iconSize:[17,17],iconAnchor:[8.5,8.5]})}).addTo(map);map.setView(ll,12);inform('Position affichée',1800);},err=>inform(err.code===1?'Accès à la position refusé':'Position indisponible, vérifie le GPS',4000),{enableHighAccuracy:true,timeout:12000,maximumAge:15000})});
 function searchMatchRank(f,q){const p=f.properties||{};const name=norm([p.label,p.name,p.code,p.type].join(' '));const code=norm(p.code||'');let score=100;if(code===q||name===q)score=0;else if(code.startsWith(q))score=1;else if(name.startsWith(q))score=2;else if(name.includes(q))score=5;else score=12;return score+ (p.layer==='airspaces'?0:p.layer==='aerodromes'?.4:1);}
