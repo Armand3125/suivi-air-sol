@@ -173,7 +173,7 @@ function go(f){
    pane:'searchFocusPane',renderer:searchFocusRenderer,interactive:false,
    radius:12,color:'#ffffff',weight:4,opacity:1,fillColor:tint,fillOpacity:.95
   }),
-  style:()=>({color:tint,weight:4,opacity:1,fill:false,interactive:false,dashArray:'10 5'})
+  style:feature=>feature.geometry.type==='Point'?({color:'#ffffff',weight:4,opacity:1,fill:true,fillColor:tint,fillOpacity:.95}):({color:tint,weight:4,opacity:1,fill:false,interactive:false,dashArray:'10 5'})
  });
  searchFocus.addLayer(highlight);
  if(f.geometry.type==='Point'){
