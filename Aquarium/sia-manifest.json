@@ -1,0 +1,20 @@
+{
+  "version": "V1R2",
+  "dataset": "SIA 2026-10-01",
+  "chunks": [
+    "sia-01.json",
+    "sia-02.json",
+    "sia-03.json",
+    "sia-04.json",
+    "sia-05.json",
+    "sia-06.json",
+    "sia-07.json",
+    "sia-08.json",
+    "sia-09.json",
+    "sia-10.json",
+    "sia-11.json",
+    "sia-12.json",
+    "sia-13.json",
+    "sia-14.json"
+  ]
+}
