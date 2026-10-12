@@ -1,4 +1,4 @@
-/* AQUARIUM V1R3 — DA bathymétrique ; fonds sans API CARTO */
+/* AQUARIUM V1R4 — DA bathymétrique ; fonds sans API CARTO */
 :root{--navy:#072b3a;--blue:#17abbb;--line:#dcebf0;--muted:#66808e;--aqua:#39e1cf;--deep:#071f2b;color:#102e3b;background:#092b38}
 body{color:#123442;background:#092b38}
 #map{background:#0a2a39;z-index:0}
@@ -68,7 +68,16 @@ body{color:#123442;background:#092b38}
 @media(max-height:660px){.brandrow{display:none}.leaflet-top.leaflet-left{top:73px}}
 @media(min-width:720px){.sheet{border-radius:24px;bottom:14px;border-bottom:1px solid #7ed3d2}}
 
-/* V1R3 — seul le raster du fond est recoloré, jamais les secteurs et repères SIA. */
+/* V1R4 — seul le raster du fond est recoloré, jamais les secteurs et repères SIA. */
 .aquarium-night-map .leaflet-tile-pane img.leaflet-tile{filter:invert(1) hue-rotate(180deg) brightness(.78) contrast(1.2) saturate(.75)}
 .aquarium-light-map .leaflet-tile-pane img.leaflet-tile{filter:saturate(.55) brightness(1.05) contrast(.97)}
 .leaflet-tile-pane img.leaflet-tile{image-rendering:auto}
+
+/* V1R4 : priorité à la lisibilité sur mobile, carte OSM normale au démarrage. */
+.aquarium-night-map .leaflet-tile-pane img.leaflet-tile{
+ filter:invert(.9) hue-rotate(180deg) brightness(.89) contrast(1.07) saturate(.75)
+}
+.aquarium-light-map .leaflet-tile-pane img.leaflet-tile{
+ filter:saturate(.8) brightness(1.035) contrast(.98)
+}
+.leaflet-container{touch-action:pan-x pan-y}
