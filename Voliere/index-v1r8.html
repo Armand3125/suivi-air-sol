@@ -3,8 +3,8 @@
 <meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#082d3a"><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Volière V1R8</title>
-<link rel="icon" href="./icon.svg"><link rel="manifest" href="./manifest.webmanifest?v=V1R8">
+<title>Volière V1R9</title>
+<link rel="icon" href="./icon.svg?v=V1R9" type="image/svg+xml"><link rel="manifest" href="./manifest.webmanifest?v=V1R9">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{--ink:#102d3a;--dark:#082d3a;--sea:#14c6b4;--border:#dceaea;--muted:#718b94;--safe:env(safe-area-inset-bottom,0px)}
@@ -42,9 +42,35 @@ button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus
 .label small{font-size:10px;color:#66808a;font-weight:650;text-transform:none}
 .buttons .vac{text-decoration:none;background:#0c8587;color:white;border-color:#0c8587;min-height:42px}
 .buttons .vac:hover{background:#086a76}
+
+/* V1R9 — panneaux de recherche adaptés au clavier natif */
+body.search-active .header{z-index:850}
+.sheet.searchsheet .body{min-height:0}
+.sheet.searchsheet .searchchips{position:sticky;top:-15px;z-index:3;background:#fcffff;padding:8px 0 11px;margin-bottom:10px!important;border-bottom:1px solid #dceaea}
+@media(max-width:699px){
+ .sheet.searchsheet{
+  top:var(--search-panel-top,135px);bottom:auto;left:8px;right:8px;max-width:none;
+  height:var(--search-panel-height,calc(100dvh - 145px));max-height:none;
+  border-radius:17px;transform:none;transition:none;margin:0;
+ }
+ .sheet.searchsheet:not(.open){visibility:hidden;pointer-events:none}
+ .sheet.searchsheet .grab{display:none}
+ .sheet.searchsheet .head{padding:7px 11px}
+ .sheet.searchsheet .head h2{font-size:15px}
+ .sheet.searchsheet .head p{display:none}
+ .sheet.searchsheet .body{flex:1;overflow-y:auto;padding:8px 9px 12px}
+ .sheet.searchsheet .searchchips{
+  top:-8px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;
+  padding:8px 0 10px;margin:0 0 9px!important
+ }
+ .sheet.searchsheet .searchchips .chip{
+  min-width:0;padding:8px 2px;border-radius:9px;
+  font-size:clamp(9px,2.55vw,11px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+ }
+}
 </style></head><body>
 <div id="map" aria-label="Carte interactive SIA"></div>
-<header class="header"><div class="brand"><span class="logo"><svg viewBox="0 0 32 32" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22c7-12 12-13 18-8 3 2 5 3 8 2M7 24c6-1 10-6 13-10M18 18l2 8M22 13l4-3"/><circle cx="25" cy="9" r="1.2" fill="white" stroke="none"/></svg></span><span class="brandtitle"><strong>VOLIÈRE</strong><small>ATLAS SIA · V1R8</small></span><span id="status" class="status">Chargement SIA…</span></div>
+<header class="header"><div class="brand"><span class="logo"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="white" d="M3 23 C8 13 13 10 18 15 C21 19 25 17 30 10 C29 20 23 24 18 23 C14 22 12 18 9 19 C7 19 5 21 3 23 Z"/></svg></span><span class="brandtitle"><strong>VOLIÈRE</strong><small>ATLAS SIA · V1R9</small></span><span id="status" class="status">Chargement SIA…</span></div>
 <div class="searchbar"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="10" cy="10" r="7.3"/><path d="m16 16 5 5"/></svg><input id="q" type="search" placeholder="Secteur, LFBO, 125.030…" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Recherche SIA"><button id="clear" type="button" aria-label="Effacer">×</button></div></header>
 <div id="hint" class="hint">Activez les couches pour afficher les données SIA</div><div id="toast" class="toast"></div>
 <nav class="dock" aria-label="Fonctions">
@@ -87,8 +113,22 @@ function setBase(k){if(!backgrounds[k])return;const x=backgrounds[k],next=new Sa
 try{setBase(localStorage.getItem('voliere-v1r6-base')||'ign')}catch(e){setBase('ign')}
 function notice(t){$('toast').textContent=t;$('toast').style.display='block';clearTimeout(tick);tick=setTimeout(()=>$('toast').style.display='none',2900)}
 function status(t){$('status').textContent=t}
-function hide(){$('sheet').classList.remove('open');$('sheet').setAttribute('aria-hidden','true');$('shade').style.display='none';mode=''}
-function show(k,title,sub,html){mode=k;$('title').textContent=title;$('sub').textContent=sub||'';$('body').innerHTML=html;$('body').scrollTop=0;$('shade').style.display='block';$('sheet').classList.add('open');$('sheet').setAttribute('aria-hidden','false')}
+function hide(){
+ $('sheet').classList.remove('open','searchsheet');
+ document.body.classList.remove('search-active');
+ $('sheet').setAttribute('aria-hidden','true');
+ $('shade').style.display='none';mode='';
+}
+function show(k,title,sub,html){
+ mode=k;
+ $('title').textContent=title;$('sub').textContent=sub||'';
+ $('body').innerHTML=html;$('body').scrollTop=0;
+ document.body.classList.toggle('search-active',k==='search');
+ $('sheet').classList.toggle('searchsheet',k==='search');
+ $('shade').style.display='block';
+ $('sheet').classList.add('open');$('sheet').setAttribute('aria-hidden','false');
+ if(k==='search')refreshSearchViewport();
+}
 $('shade').onclick=hide;$('close').onclick=hide;
 function label(f){const p=f.properties;return p.label||[p.type,p.name,p.code].filter(Boolean).join(' ')||'SIA'}
 function color(f){const p=f.properties;const custom=String(p.biomeColor||'');return p.layer==='airspaces' ? (/^#[0-9a-f]{6}$/i.test(custom)?custom:cfg.airspaces[1]) : cfg[p.layer][1]}
@@ -149,6 +189,7 @@ function frequenciesByCategory(p){
  [...cats.entries()].sort((a,b)=>a[0].localeCompare(b[0],'fr')).map(([name,values])=>'<div class="freqcat"><strong>'+esc(name)+'</strong><div class="freqnums">'+values.map(v=>'<span class="freqnum">'+esc(v)+'</span>').join('')+'</div></div>').join('')+'</div>';
 }
 function detail(f){
+ if(document.activeElement===$('q'))$('q').blur();
  const p=f.properties;
  let out='<div class="hero"><span class="block" style="--c:'+color(f)+'">'+esc(String(p.type||p.code||'SIA').slice(0,7))+'</span><div><h3>'+esc(label(f))+'</h3><p>'+esc(cfg[p.layer][0])+'</p></div></div>';
  if(p.layer==='airspaces')out+='<div class="levels"><div class="level"><small>Plancher</small><b>'+esc(p.lower||'—')+'</b></div><div class="level"><small>Plafond</small><b>'+esc(p.upper||'—')+'</b></div></div>';
@@ -173,11 +214,64 @@ document.querySelectorAll('[data-base]').forEach(b=>b.onclick=()=>{setBase(b.dat
 $('layers').onclick=layers;$('bases').onclick=bases;
 $('sectors').onclick=()=>{cfg.airspaces[2]=!cfg.airspaces[2];$('sectors').classList.toggle('on',cfg.airspaces[2]);$('sectors').setAttribute('aria-pressed',cfg.airspaces[2]);redraw();notice(cfg.airspaces[2]?'Secteurs affichés':'Secteurs masqués')};
 $('gps').onclick=()=>{if(!navigator.geolocation){notice('GPS indisponible');return}notice('Localisation…');navigator.geolocation.getCurrentPosition(p=>{pos.clearLayers();const c=[p.coords.latitude,p.coords.longitude];pos.addLayer(L.circle(c,{radius:p.coords.accuracy||30,color:'#1294c5',fillOpacity:.1,interactive:false}));pos.addLayer(L.marker(c,{icon:L.divIcon({className:'apin',html:'<div class="gpspin"></div>',iconSize:[22,22],iconAnchor:[11,11]})}));map.setView(c,12);notice('Position affichée')},e=>notice(e.code===1?'Autorisation GPS refusée':'Position indisponible'),{enableHighAccuracy:true,timeout:12000})};
-function results(){const q=norm($('q').value);$('clear').style.display=q?'block':'none';if(!loaded){show('search','Recherche SIA','','<p class="mutedtext">Chargement des données…</p>');return}const toks=q.split(' ').filter(Boolean);let found=[];if(q)for(let i=0;i<features.length;i++){const f=features[i];if(category!=='all'&&f.properties.layer!==category)continue;if(toks.every(t=>finder[i].includes(t)))found.push(f)}
-found.sort((a,b)=>{function score(f){const v=norm(f.properties.code),n=norm(f.properties.name);return v===q?0:v.startsWith(q)?1:n===q?2:n.startsWith(q)?3:4}return score(a)-score(b)});
-show('search','Recherche SIA',q?found.length+' résultat(s)':'Nom, code, fréquence','<div class="chips" style="margin-bottom:14px">'+[['all','Tout'],['airspaces','Secteurs'],['aerodromes','Aérodromes'],['radionav','RadioNav'],['navfix','NavFix']].map(v=>'<button type="button" class="chip '+(category===v[0]?'on':'')+'" data-cat="'+v[0]+'">'+v[1]+'</button>').join('')+'</div><div class="results">'+(q?(found.slice(0,55).map(row).join('')||'<p class="mutedtext">Aucun résultat.</p>'):'<p class="mutedtext">Exemples : LFBO, NICE, LFR162, 125.030.</p>')+'</div>');
-document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{category=b.dataset.cat;results()});bind()}
-let qt=0;$('q').addEventListener('focus',results);$('q').addEventListener('input',()=>{clearTimeout(qt);qt=setTimeout(results,90)});$('clear').onclick=()=>{$('q').value='';results();$('q').focus()};
+const searchCategories=[['all','Tout'],['airspaces','Secteurs'],['aerodromes','Aérodromes'],['freq','Freq'],['navfix','NavFix']];
+function matchesSearchCategory(f){
+ if(category==='all')return true;
+ const p=f.properties||{};
+ if(category==='freq')return !!(String(p.frequency||'').trim()||(Array.isArray(p.frequency_details)&&p.frequency_details.length));
+ return p.layer===category;
+}
+function refreshSearchViewport(){
+ if(mode!=='search')return;
+ const vv=window.visualViewport;
+ const viewTop=vv?vv.offsetTop:0;
+ const viewHeight=vv?vv.height:window.innerHeight;
+ const searchBottom=$('q').getBoundingClientRect().bottom+7;
+ const panelTop=Math.max(viewTop+6,searchBottom);
+ const free=Math.max(74,viewTop+viewHeight-panelTop-7);
+ const style=document.documentElement.style;
+ style.setProperty('--search-panel-top',Math.round(panelTop)+'px');
+ style.setProperty('--search-panel-height',Math.round(free)+'px');
+}
+function results(){
+ const q=norm($('q').value);
+ $('clear').style.display=q?'block':'none';
+ const chips='<div class="chips searchchips" role="group" aria-label="Filtrer la recherche">'+
+  searchCategories.map(v=>'<button type="button" class="chip '+(category===v[0]?'on':'')+
+  '" aria-pressed="'+(category===v[0])+'" data-cat="'+v[0]+'">'+v[1]+'</button>').join('')+'</div>';
+ if(!loaded){
+  show('search','Recherche SIA','Chargement des données…',chips+'<p class="mutedtext">Chargement des données SIA…</p>');
+ }else{
+  const tokens=q.split(' ').filter(Boolean);
+  const found=[];
+  if(q)for(let i=0;i<features.length;i++){
+   const f=features[i];
+   if(!matchesSearchCategory(f))continue;
+   if(tokens.every(t=>finder[i].includes(t)))found.push(f);
+  }
+  found.sort((a,b)=>{
+   const rank=f=>{
+    const code=norm(f.properties.code),name=norm(f.properties.name);
+    return code===q?0:code.startsWith(q)?1:name===q?2:name.startsWith(q)?3:4;
+   };
+   return rank(a)-rank(b);
+  });
+  const content='<div class="results">'+
+   (q?(found.slice(0,55).map(row).join('')||'<p class="mutedtext">Aucun résultat.</p>'):
+   '<p class="mutedtext">Exemples : LFBO, NICE, LFR162, 125.030.</p>')+'</div>';
+  show('search','Recherche SIA',q?found.length+' résultat(s)':'Nom, code, fréquence',chips+content);
+ }
+ document.querySelectorAll('[data-cat]').forEach(b=>{
+  b.addEventListener('pointerdown',e=>e.preventDefault());
+  b.onclick=()=>{category=b.dataset.cat;results()};
+ });
+ bind();
+}
+
+let qt=0;$('q').addEventListener('focus',()=>{results();refreshSearchViewport()});$('q').addEventListener('input',()=>{clearTimeout(qt);qt=setTimeout(results,90)});$('clear').onclick=()=>{$('q').value='';results();$('q').focus()};
+window.addEventListener('resize',()=>{if(mode==='search')refreshSearchViewport()},{passive:true});
+if(window.visualViewport){window.visualViewport.addEventListener('resize',refreshSearchViewport,{passive:true});window.visualViewport.addEventListener('scroll',refreshSearchViewport,{passive:true});}
+
 function accept(data){features=data.filter(f=>f&&f.geometry&&f.properties&&cfg[f.properties.layer]);finder=[];lookup.clear();Object.keys(cfg).forEach(k=>groups[k]=[]);
 for(const f of features){f._b=Array.isArray(f.properties.bbox)?f.properties.bbox:bb(f.geometry);groups[f.properties.layer].push(f);lookup.set(id(f),f);const p=f.properties;finder.push(norm([p.name,p.label,p.code,p.type,p.frequency,p.service,p.remarks,p.station,p.manager,p.frequency_details&&JSON.stringify(p.frequency_details)].filter(Boolean).join(' ')))}loaded=true;status(features.length.toLocaleString('fr-FR')+' objets · 01/10/2026');$('status').classList.add('ok');redraw();if(mode==='search')results();if(mode==='layers')layers()}
 async function load(){try{const r=await fetch('./sia-manifest.json',{cache:'no-store'});if(!r.ok)throw Error('manifest inaccessible');const m=await r.json();let fs=[];for(let i=0;i<m.chunks.length;i+=4){const a=await Promise.all(m.chunks.slice(i,i+4).map(async n=>{const r=await fetch('./'+n);if(!r.ok)throw Error(n);return(await r.json()).features}));fs.push(...a.flat());status('SIA '+Math.min(i+4,m.chunks.length)+'/'+m.chunks.length)}accept(fs)}catch(e){status('Données indisponibles');$('hint').textContent='Données SIA indisponibles';notice('Erreur de chargement SIA');console.error(e)}}
