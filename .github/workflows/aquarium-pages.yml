@@ -1,0 +1,45 @@
+name: Aquarium — publication mobile
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Aquarium/**'
+      - '.github/workflows/aquarium-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: aquarium-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+      - name: Préparer le site
+        run: |
+          mkdir -p _site/Aquarium
+          cp -R Aquarium/. _site/Aquarium/
+          touch _site/.nojekyll
+          cat > _site/index.html <<'EOF'
+          <!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=./Aquarium/"><title>Aquarium</title><a href="./Aquarium/">Ouvrir Aquarium</a></html>
+          EOF
+      - name: Configurer GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Charger les fichiers
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Publier Aquarium
+        id: deploy
+        uses: actions/deploy-pages@v4
