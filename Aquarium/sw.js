@@ -1,7 +1,7 @@
-/* Aquarium V1R3 : ne jamais intercepter ni sur-cacher les tuiles externes.
+/* Aquarium V1R4 : ne jamais intercepter ni sur-cacher les tuiles externes.
    Les caches v1r2 contenant des tuiles CARTO filigranées sont purgés. */
-const SHELL='aquarium-v1r3-shell';
-const CORE=['./','./index.html','./aquarium.css?v=V1R3','./sia-manifest.json','./icon.svg','./icon-192.png','./icon-512.png','./manifest.webmanifest'];
+const SHELL='aquarium-v1r4-shell';
+const CORE=['./','./index.html','./aquarium.css?v=V1R4','./sia-manifest.json','./icon.svg','./icon-192.png','./icon-512.png','./manifest.webmanifest'];
 for(let i=1;i<=14;i++)CORE.push('./sia-'+String(i).padStart(2,'0')+'.json');
 self.addEventListener('install',event=>{
  event.waitUntil((async()=>{
