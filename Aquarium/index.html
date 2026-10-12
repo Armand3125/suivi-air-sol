@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="description" content="Aquarium — atlas aéronautique SIA mobile, cartes 2D, secteurs et recherche rapide.">
-  <title>Aquarium V1R2</title>
+  <title>Aquarium V1R3</title>
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon.svg">
   <link rel="manifest" href="manifest.webmanifest">
@@ -27,7 +27,7 @@
   @media(max-height:660px){.brandrow{display:none}.leaflet-top.leaflet-left{top:68px}.top{gap:0}#welcome{display:none}}
   @media(prefers-reduced-motion:reduce){.sheet{transition:none}}
   </style>
-<link rel="stylesheet" href="./aquarium.css">
+<link rel="stylesheet" href="./aquarium.css?v=V1R3">
 </head>
 <body>
 <div class="ocean-halo" aria-hidden="true"></div>
@@ -56,7 +56,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 (()=>{'use strict';
-const VERSION='V1R2',SIA_FILE='./sia.geojson',DATE_SIA='01/10/2026';
+const VERSION='V1R3',SIA_FILE='./sia.geojson',DATE_SIA='01/10/2026';
 const CONFIG={
  airspaces:{name:'Secteurs',color:'#2aa7b8',visible:true},aerodromes:{name:'Aérodromes',color:'#43c59e',visible:true},heliports:{name:'Héliports',color:'#ffc75f',visible:false},radionav:{name:'RadioNav',color:'#a28dec',visible:false},approach:{name:'ILS',color:'#4bd1dd',visible:false},navfix:{name:'NavFix',color:'#f47a8b',visible:false},routes:{name:'Routes',color:'#f3a660',visible:false},runways:{name:'Pistes',color:'#b6c4d2',visible:false}
 };
@@ -66,18 +66,55 @@ const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,
 const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[’']/g,' ').replace(/[^a-z0-9.]+/g,' ').trim();
 let features=[],groups={},spatial=[],searchIndex=[],selected=null,selectionLayer=null,curPos=null,curPosCircle=null,openPanel='',searchFilter='all',typeFilter='ALL',panelItems=[],dataReady=false,notifyTimer=0,drawTimer=0,searchTimer=0,renderSerial=0,lastTouch=null;
 for(const key of ORDER)groups[key]=[];
+// V1R3 : les fonds CARTO nécessitent désormais une clé API. Des variantes
+// stylisées d'OSM remplacent les deux fonds concernés, sans clé et sans filigrane.
+const OSM_TILES='https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+const OSM_ATTR='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">Contributeurs OpenStreetMap</a>';
 const tiles={
- ocean:{name:'Nuit marine',url:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',options:{subdomains:'abcd',maxZoom:19,attribution:'&copy; OpenStreetMap &copy; CARTO'}},
- clair:{name:'Claire',url:'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',options:{subdomains:'abcd',maxZoom:19,attribution:'&copy; OpenStreetMap &copy; CARTO'}},
- osm:{name:'OpenStreetMap',url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',options:{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}},
- ign:{name:'Plan IGN',url:'https://data.geopf.fr/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&FORMAT=image/png&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}',options:{maxZoom:19,attribution:'&copy; IGN / Géoplateforme'}},
- satellite:{name:'Satellite',url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',options:{maxZoom:19,attribution:'Tiles &copy; Esri, Maxar, Earthstar Geographics'}}
+ ocean:{name:'Nuit marine',url:OSM_TILES,options:{maxZoom:19,attribution:OSM_ATTR},filter:'night'},
+ clair:{name:'Clair',url:OSM_TILES,options:{maxZoom:19,attribution:OSM_ATTR},filter:'light'},
+ osm:{name:'OpenStreetMap',url:OSM_TILES,options:{maxZoom:19,attribution:OSM_ATTR}},
+ ign:{name:'Plan IGN',url:'https://data.geopf.fr/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&FORMAT=image/png&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}',options:{maxZoom:19,maxNativeZoom:18,attribution:'&copy; IGN / Géoplateforme'}},
+ satellite:{name:'Satellite',url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',options:{maxZoom:19,maxNativeZoom:18,attribution:'Tiles &copy; Esri, Maxar, Earthstar Geographics'}}
 };
-let baseKey='ocean',baseLayer;
-const map=L.map('map',{center:[46.5,2.2],zoom:6,zoomControl:false,preferCanvas:true,zoomSnap:.5,worldCopyJump:true});
+let baseKey='ocean',baseLayer,baseErrors=0,baseSuccess=0,baseGeneration=0;
+const map=L.map('map',{center:[46.5,2.2],zoom:6,zoomControl:false,preferCanvas:true,zoomSnap:1,zoomDelta:1,worldCopyJump:true});
 L.control.zoom({position:'topleft'}).addTo(map);
-function setBase(key){if(!tiles[key])return;const t=tiles[key];if(baseLayer)map.removeLayer(baseLayer);baseLayer=L.tileLayer(t.url,{...t.options,keepBuffer:2,crossOrigin:true}).addTo(map);baseLayer.bringToBack();baseKey=key;try{localStorage.setItem('aquarium-fond',key)}catch{}}
+function setBase(key){
+ if(!tiles[key])return;
+ const t=tiles[key],previous=baseLayer,generation=++baseGeneration;
+ baseErrors=0;baseSuccess=0;baseKey=key;
+ const canvas=map.getContainer();
+ canvas.classList.toggle('aquarium-night-map',t.filter==='night');
+ canvas.classList.toggle('aquarium-light-map',t.filter==='light');
+ // Ne pas appliquer crossOrigin aux tuiles : des fournisseurs ne renvoient pas CORS.
+ const layer=L.tileLayer(t.url,{...t.options,keepBuffer:3,updateWhenIdle:true});
+ baseLayer=layer;
+ layer.on('tileload',()=>{if(generation===baseGeneration){baseSuccess++;baseErrors=0;}});
+ layer.on('tileerror',()=>{
+  if(generation!==baseGeneration)return;
+  baseErrors++;
+  if(baseErrors<4)return;
+  baseErrors=0;
+  if((key==='ign'||key==='satellite')&&baseSuccess===0){
+   inform('Fond '+t.name+' indisponible. Passage à OpenStreetMap.',4200);
+   setBase('osm');
+  }else if(baseSuccess===0){
+   inform('Impossible de charger la carte : vérifie la connexion réseau.',4700);
+  }
+ });
+ layer.addTo(map);
+ layer.bringToBack();
+ if(previous&&map.hasLayer(previous))map.removeLayer(previous);
+ try{localStorage.setItem('aquarium-fond',key)}catch{}
+}
 try{const saved=localStorage.getItem('aquarium-fond');setBase(tiles[saved]?saved:'ocean')}catch{setBase('ocean')}
+let resizePending=0;
+function fixMobileTiles(){if(resizePending)cancelAnimationFrame(resizePending);resizePending=requestAnimationFrame(()=>{resizePending=0;map.invalidateSize({animate:false,pan:false})})}
+window.addEventListener('orientationchange',fixMobileTiles);
+window.addEventListener('resize',fixMobileTiles,{passive:true});
+if(window.visualViewport)window.visualViewport.addEventListener('resize',fixMobileTiles,{passive:true});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)fixMobileTiles()});
 const sectorGroup=L.layerGroup().addTo(map),pointGroup=L.layerGroup().addTo(map),lineGroup=L.layerGroup().addTo(map),highlightGroup=L.layerGroup().addTo(map);
 const layerById=new Map();
 function inform(message,timeout=2700){$('notice').textContent=message;$('notice').classList.add('show');clearTimeout(notifyTimer);notifyTimer=setTimeout(()=>$('notice').classList.remove('show'),timeout)}
@@ -146,7 +183,7 @@ $('importFile').addEventListener('change',async e=>{const file=e.target.files?.[
 function loadFeatures(data){if(!data||data.type!=='FeatureCollection'||!Array.isArray(data.features))throw Error('GeoJSON FeatureCollection attendu');features=data.features.filter(f=>f?.type==='Feature'&&f.geometry&&CONFIG[f.properties?.layer]);featureMap.clear();searchIndex=[];for(const key of ORDER)groups[key]=[];for(let i=0;i<features.length;i++){const f=features[i],p=f.properties||{};f._bbox=(Array.isArray(p.bbox)&&p.bbox.length===4)?p.bbox:boundsGeometry(f.geometry);groups[p.layer].push(f);featureMap.set(objId(f),f);searchIndex.push(norm([p.label,p.code,p.name,p.type,p.frequency,p.service,p.frequency_details?.map(d=>[d.frequency,d.transmission,d.service_type,d.callsign].join(' ')).join(' '),p.origin,p.end,p.station,p.remarks,p.manager].filter(Boolean).join(' ')));}dataReady=true;status(features.length.toLocaleString('fr-FR')+' éléments · '+DATE_SIA,true);$('welcome').textContent='Touchez la carte pour voir les zones';selected=null;highlightGroup.clearLayers();scheduleRender();if(openPanel==='layers')layerPanel();if(openPanel==='search')searchResults()}
 async function fetchLibrary(){status('Chargement SIA…');try{let geo;try{const response=await fetch('./sia-manifest.json',{cache:'no-cache'});if(!response.ok)throw Error('Liste SIA absente');const manifest=await response.json();const arrays=await Promise.all(manifest.chunks.map(async file=>{const r=await fetch('./'+file,{cache:'no-cache'});if(!r.ok)throw Error('HTTP '+r.status+' '+file);return (await r.json()).features}));geo={type:'FeatureCollection',features:arrays.flat()}}catch(e){const response=await fetch(SIA_FILE,{cache:'no-cache'});if(!response.ok)throw e;geo=await response.json()}loadFeatures(geo);}catch(e){status('Données à importer');$('welcome').textContent='Importer le fichier SIA pour commencer';inform('Données non trouvées. Importez le GeoJSON via Couches.',9000);console.warn('Chargement SIA impossible',e)}}
 fetchLibrary();
-if('serviceWorker' in navigator&&location.protocol==='https:'){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
+if('serviceWorker' in navigator&&location.protocol==='https:'){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).catch(()=>{}));}
 })();
 </script>
 </body>
