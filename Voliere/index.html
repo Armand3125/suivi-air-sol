@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="fr"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#082d3a"><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Volière V1R8</title>
-<link rel="icon" href="./icon.svg"><link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg"><link rel="manifest" href="./manifest.webmanifest?v=V1R8">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{--ink:#102d3a;--dark:#082d3a;--sea:#14c6b4;--border:#dceaea;--muted:#718b94;--safe:env(safe-area-inset-bottom,0px)}
@@ -181,7 +181,7 @@ let qt=0;$('q').addEventListener('focus',results);$('q').addEventListener('input
 function accept(data){features=data.filter(f=>f&&f.geometry&&f.properties&&cfg[f.properties.layer]);finder=[];lookup.clear();Object.keys(cfg).forEach(k=>groups[k]=[]);
 for(const f of features){f._b=Array.isArray(f.properties.bbox)?f.properties.bbox:bb(f.geometry);groups[f.properties.layer].push(f);lookup.set(id(f),f);const p=f.properties;finder.push(norm([p.name,p.label,p.code,p.type,p.frequency,p.service,p.remarks,p.station,p.manager,p.frequency_details&&JSON.stringify(p.frequency_details)].filter(Boolean).join(' ')))}loaded=true;status(features.length.toLocaleString('fr-FR')+' objets · 01/10/2026');$('status').classList.add('ok');redraw();if(mode==='search')results();if(mode==='layers')layers()}
 async function load(){try{const r=await fetch('./sia-manifest.json',{cache:'no-store'});if(!r.ok)throw Error('manifest inaccessible');const m=await r.json();let fs=[];for(let i=0;i<m.chunks.length;i+=4){const a=await Promise.all(m.chunks.slice(i,i+4).map(async n=>{const r=await fetch('./'+n);if(!r.ok)throw Error(n);return(await r.json()).features}));fs.push(...a.flat());status('SIA '+Math.min(i+4,m.chunks.length)+'/'+m.chunks.length)}accept(fs)}catch(e){status('Données indisponibles');$('hint').textContent='Données SIA indisponibles';notice('Erreur de chargement SIA');console.error(e)}}
-if('serviceWorker' in navigator)navigator.serviceWorker.getRegistrations().then(v=>v.filter(r=>r.scope.includes('/Volière/')).forEach(r=>r.unregister())).catch(()=>{});
+if('serviceWorker' in navigator)navigator.serviceWorker.getRegistrations().then(v=>v.filter(r=>new URL(r.scope).pathname.startsWith('/suivi-air-sol/Voliere/')).forEach(r=>r.unregister())).catch(()=>{});
 if('caches' in window)caches.keys().then(v=>v.filter(k=>k.startsWith('voliere-')).forEach(k=>caches.delete(k))).catch(()=>{});
 window.addEventListener('resize',()=>map.invalidateSize({animate:false}),{passive:true});window.addEventListener('orientationchange',()=>setTimeout(()=>map.invalidateSize({animate:false}),250));
 load();
