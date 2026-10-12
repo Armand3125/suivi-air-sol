@@ -3,8 +3,8 @@
 <meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#082d3a"><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Volière V1R10</title>
-<link rel="icon" href="./icon.svg?v=V1R10" type="image/svg+xml"><link rel="manifest" href="./manifest.webmanifest?v=V1R10">
+<title>Volière V1R11</title>
+<link rel="icon" href="./icon.svg?v=V1R11" type="image/svg+xml"><link rel="manifest" href="./manifest.webmanifest?v=V1R11">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{--ink:#102d3a;--dark:#082d3a;--sea:#14c6b4;--border:#dceaea;--muted:#718b94;--safe:env(safe-area-inset-bottom,0px)}
@@ -19,7 +19,7 @@ button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus
 .searchbar{display:flex;align-items:center;gap:11px;margin-top:9px;height:53px;padding:0 10px 0 16px;background:#fbffff;border:1px solid white;border-radius:16px;box-shadow:0 6px 22px #132e3b4a;pointer-events:auto}
 .searchbar svg{width:19px;height:19px;stroke:#15858c;flex:none}.searchbar input{border:0;outline:0;background:transparent;min-width:0;flex:1;height:48px;color:#1c404d;font-size:14px}.searchbar input::placeholder{color:#8fa4aa}
 #clear{display:none;border:0;border-radius:10px;height:34px;width:34px;background:#e6f4f4;color:#1a6e7a;font-size:23px}
-.dock{position:absolute;z-index:501;left:50%;bottom:calc(11px + var(--safe));transform:translateX(-50%);width:min(468px,calc(100% - 20px));background:#072e3bef;border:1px solid #59c4c078;border-radius:21px;padding:6px;display:grid;grid-template-columns:repeat(3,1fr);gap:5px;box-shadow:0 9px 28px #0b324c61;backdrop-filter:blur(16px)}
+.dock{position:absolute;z-index:501;left:50%;bottom:calc(11px + var(--safe));transform:translateX(-50%);width:min(468px,calc(100% - 20px));background:#072e3bef;border:1px solid #59c4c078;border-radius:21px;padding:6px;display:grid;grid-template-columns:repeat(4,1fr);gap:5px;box-shadow:0 9px 28px #0b324c61;backdrop-filter:blur(16px)}
 .nav{min-height:59px;border:0;background:transparent;border-radius:15px;color:#abdae0;display:grid;align-content:center;justify-items:center;gap:3px;font-size:10px;font-weight:780}.nav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.nav.on{background:linear-gradient(135deg,#39dfc8,#0caab3);color:#073542}
 .hint{position:absolute;z-index:450;left:50%;bottom:calc(86px + var(--safe));transform:translateX(-50%);background:#0b3b4bea;border:1px solid #78d7d37a;color:#eaffff;font-size:11px;padding:8px 12px;border-radius:99px;white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
 .toast{display:none;position:absolute;z-index:999;top:calc(135px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:#093b4a;color:white;border-radius:11px;padding:11px 14px;font-size:12px;box-shadow:0 6px 18px #102e4444;max-width:90%;text-align:center}
@@ -43,7 +43,7 @@ button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus
 .buttons .vac{text-decoration:none;background:#0c8587;color:white;border-color:#0c8587;min-height:42px}
 .buttons .vac:hover{background:#086a76}
 
-/* V1R10 — panneaux de recherche adaptés au clavier natif */
+/* V1R11 — panneaux de recherche adaptés au clavier natif */
 body.search-active .header{z-index:850}
 .sheet.searchsheet .body{min-height:0}
 .sheet.searchsheet .searchchips{position:sticky;top:-15px;z-index:3;background:#fcffff;padding:8px 0 11px;margin-bottom:10px!important;border-bottom:1px solid #dceaea}
@@ -69,7 +69,7 @@ body.search-active .header{z-index:850}
  }
 }
 
-/* Volière V1R10 — menus Secteurs / Éléments et résultats radio dédiés */
+/* Volière V1R11 — 4 boutons : Secteurs rapide, Filtres, Éléments, Fond */
 .freqresults{display:grid;gap:8px}
 .freqresult{border:1px solid #d9e8e8;border-left:4px solid var(--c,#0c8791);border-radius:12px;padding:10px 12px;background:#fff}
 .freqresult-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
@@ -82,11 +82,12 @@ body.search-active .header{z-index:850}
 #sectorToggle{width:100%}
 </style></head><body>
 <div id="map" aria-label="Carte interactive SIA"></div>
-<header class="header"><div class="brand"><span class="logo"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="white" d="M3 23 C8 13 13 10 18 15 C21 19 25 17 30 10 C29 20 23 24 18 23 C14 22 12 18 9 19 C7 19 5 21 3 23 Z"/></svg></span><span class="brandtitle"><strong>VOLIÈRE</strong><small>ATLAS SIA · V1R10</small></span><span id="status" class="status">Chargement SIA…</span></div>
+<header class="header"><div class="brand"><span class="logo"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="white" d="M3 23 C8 13 13 10 18 15 C21 19 25 17 30 10 C29 20 23 24 18 23 C14 22 12 18 9 19 C7 19 5 21 3 23 Z"/></svg></span><span class="brandtitle"><strong>VOLIÈRE</strong><small>ATLAS SIA · V1R11</small></span><span id="status" class="status">Chargement SIA…</span></div>
 <div class="searchbar"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="10" cy="10" r="7.3"/><path d="m16 16 5 5"/></svg><input id="q" type="search" placeholder="Secteur, LFBO, 125.030…" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Recherche SIA"><button id="clear" type="button" aria-label="Effacer">×</button></div></header>
 <div id="hint" class="hint">Activez les couches pour afficher les données SIA</div><div id="toast" class="toast"></div>
 <nav class="dock" aria-label="Affichage cartographique">
-<button class="nav" id="sectors" type="button" aria-label="Configurer les secteurs"><svg viewBox="0 0 24 24"><path d="m3 7 9-4 9 4v10l-9 4-9-4zM3 7l9 5 9-5M12 12v9"/></svg>Secteurs</button>
+<button class="nav" id="sectors" type="button" aria-label="Afficher ou masquer les secteurs" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="m3 7 9-4 9 4v10l-9 4-9-4zM3 7l9 5 9-5M12 12v9"/></svg>Secteurs</button>
+<button class="nav" id="filters" type="button" aria-label="Filtrer les types de secteurs"><svg viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8L3 5z"/></svg>Filtres</button>
 <button class="nav" id="elements" type="button" aria-label="Configurer les éléments"><svg viewBox="0 0 24 24"><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>Éléments</button>
 <button class="nav" id="bases" type="button"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1"/><path d="m3 18 6-6 4 4 3-3 5 5"/></svg>Fond</button>
 </nav>
@@ -222,16 +223,18 @@ function updateDock(){
  $('sectors').classList.toggle('on',cfg.airspaces[2]);
  $('sectors').setAttribute('aria-pressed',cfg.airspaces[2]);
  $('elements').classList.toggle('on',Object.entries(cfg).some(([key,def])=>key!=='airspaces'&&def[2]));
+ $('filters').classList.toggle('on',type!=='ALL');
+ $('filters').setAttribute('aria-pressed',type!=='ALL');
 }
 function sectorsPanel(){
  const active=cfg.airspaces[2];
- show('sectors','Secteurs','Espaces aériens et catégories',
+ show('sectors','Filtres secteurs','Espaces aériens et catégories',
   '<div class="section"><button type="button" class="layer '+(active?'on':'')+'" id="sectorToggle" aria-pressed="'+active+'">'+
   '<span class="dot" style="--c:'+cfg.airspaces[1]+'"></span><span><b>Afficher les secteurs</b><small>'+groups.airspaces.length+' secteurs</small></span><em>'+(active?'✓':'+')+'</em></button></div>'+
   '<div class="section"><div class="label">Types de secteurs</div><div class="chips">'+
   ['ALL','CTR','TMA','R','D','P','Autres'].map(k=>'<button type="button" class="chip '+(type===k?'on':'')+'" data-type="'+k+'">'+(k==='ALL'?'Tous':k)+'</button>').join('')+'</div></div>');
  $('sectorToggle').onclick=()=>{cfg.airspaces[2]=!cfg.airspaces[2];redraw();updateDock();sectorsPanel()};
- document.querySelectorAll('[data-type]').forEach(b=>b.onclick=()=>{type=b.dataset.type;redraw();sectorsPanel()});
+ document.querySelectorAll('[data-type]').forEach(b=>b.onclick=()=>{type=b.dataset.type;redraw();updateDock();sectorsPanel()});
 }
 function elementsPanel(){
  show('elements','Éléments','Aérodromes, navigation et infrastructures',
@@ -243,7 +246,8 @@ function elementsPanel(){
 }
 function bases(){show('base','Fond de carte','Choisissez un fond fiable','<div class="results">'+Object.entries(backgrounds).map(([k,v])=>'<button class="item" type="button" data-base="'+k+'"><span class="stripe" style="--c:'+(bgName===k?'#12bdac':'#cbdede')+'"></span><span><b>'+v[0]+(bgName===k?' ✓':'')+'</b><small>Une seconde source prend le relais en cas d’échec</small></span><span class="arrow">›</span></button>').join('')+'</div><div class="section"><button class="btn muted" id="refresh">↻ Recharger les tuiles</button></div>');
 document.querySelectorAll('[data-base]').forEach(b=>b.onclick=()=>{setBase(b.dataset.base);hide()});$('refresh').onclick=()=>{setBase(bgName);hide()}}
-$('sectors').onclick=sectorsPanel;
+$('sectors').onclick=()=>{cfg.airspaces[2]=!cfg.airspaces[2];redraw();updateDock();if(mode==='sectors')sectorsPanel();notice(cfg.airspaces[2]?'Secteurs affichés':'Secteurs masqués')};
+$('filters').onclick=sectorsPanel;
 $('elements').onclick=elementsPanel;
 $('bases').onclick=bases;
 const searchCategories=[['all','Tout'],['airspaces','Secteurs'],['aerodromes','Aérodromes'],['freq','Freq'],['navfix','NavFix']];
