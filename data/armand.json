@@ -28,7 +28,7 @@
       "id": "armand-s03",
       "category": "Activité Labo",
       "customCategory": "",
-      "title": "Conf_Telerad",
+      "title": "CONF_TELERAD",
       "done": "Création de Conf_Telerad pour comparer les confs des équipements 2G.",
       "future": "Évolution de l'outil pour référencer tous les paramètres.",
       "effort": "heavy"
