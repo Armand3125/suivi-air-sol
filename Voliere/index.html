@@ -3,8 +3,8 @@
 <meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#082d3a"><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Volière V2R5</title>
-<link rel="icon" href="./icon.svg?v=V2R5" type="image/svg+xml"><link rel="manifest" href="./manifest.webmanifest?v=V2R5">
+<title>Volière V2R6</title>
+<link rel="icon" href="./icon.svg?v=V2R6" type="image/svg+xml"><link rel="manifest" href="./manifest.webmanifest?v=V2R6">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{--ink:#102d3a;--dark:#082d3a;--sea:#14c6b4;--border:#dceaea;--muted:#718b94;--safe:env(safe-area-inset-bottom,0px)}
@@ -43,7 +43,7 @@ button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus
 .buttons .vac{text-decoration:none;background:#0c8587;color:white;border-color:#0c8587;min-height:42px}
 .buttons .vac:hover{background:#086a76}
 
-/* V2R5 — panneaux de recherche adaptés au clavier natif */
+/* V2R6 — panneaux de recherche adaptés au clavier natif */
 body.search-active .header{z-index:850}
 .sheet.searchsheet .body{min-height:0}
 .sheet.searchsheet .searchchips{position:sticky;top:-15px;z-index:3;background:#fcffff;padding:8px 0 11px;margin-bottom:10px!important;border-bottom:1px solid #dceaea}
@@ -69,7 +69,7 @@ body.search-active .header{z-index:850}
  }
 }
 
-/* Volière V2R5 : Secteurs multi-sélection, Couches, Fond ; tracés inspirés de Sofia VAC. */
+/* Volière V2R6 : Secteurs multi-sélection, Couches, Fond ; tracés inspirés de Sofia VAC. */
 .freqresults{display:grid;gap:8px}
 .freqresult{border:1px solid #d9e8e8;border-left:4px solid var(--c,#0c8791);border-radius:12px;padding:10px 12px;background:#fff}
 .freqresult-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
@@ -102,30 +102,24 @@ body.search-active .header{z-index:850}
 .layer.ifr.on em{color:#008bb0}
 .layer.ifr:not(.on) .dot{box-shadow:0 0 0 1px #008cba1f}
 .layer.ifr .dot{background:#00d8ff}
-/* Profil V2R5 : épuré, deux sélections, deux hauteurs, un tracé */
-.profile-picks{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.profile-pick{display:flex;align-items:center;gap:9px;width:100%;min-width:0;min-height:61px;
- padding:10px;border:1px solid #d6e5ea;border-radius:12px;background:#f9fcfd;color:#32606e;text-align:left;font-weight:800;font-size:13px}
-.profile-pick.ready{background:#edf8f9;border-color:#8dd2d6;color:#134d5d}
-.profile-pick .profile-pin{display:grid;place-items:center;width:30px;height:30px;flex:none;border-radius:9px;background:#0b8298;color:#fff;font-size:13px;font-weight:900}
-.profile-pick .profile-pin.b{background:#aa538f}
-.profile-pick .pick-text{min-width:0;flex:1;overflow:hidden;display:flex;flex-direction:column;gap:3px;justify-content:center}
-.profile-pick .pick-text .pick-name{min-width:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere;color:#194a60;font-size:11px;line-height:1.25;font-weight:830}
-.profile-pick .pick-text small{color:#6c8c98;font-size:10px;font-weight:650;line-height:1.1}
-.profile-map-label{background:#fffffff2;border:1px solid #98c6d0;border-radius:7px;box-shadow:0 2px 9px #163d4b2e;padding:4px 7px;color:#164758;font:750 11px/1.2 Inter,-apple-system,Segoe UI,sans-serif;max-width:180px;white-space:normal;overflow-wrap:anywhere}
-.profile-map-label:before{display:none}
-.profile-pick .pick-status{font-size:17px;color:#13a58e}
+/* Profil à vue : sélection A puis B en une seule action */
+.profile-choice-row{display:grid;grid-template-columns:1.35fr 1fr;gap:8px}
+.profile-choice-row button{min-width:0;min-height:44px;border-radius:11px;padding:10px 9px;font-size:12px;font-weight:860}
+.profile-select{background:#087e90;border:1px solid #087e90;color:white}
+.profile-reset{background:#f9fcfd;border:1px solid #d5e5e9;color:#55737e}
+.profile-selected{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.profile-tag{display:flex;align-items:center;gap:6px;min-width:0;max-width:100%;font-size:11px;color:#527383;background:#f2f9fa;border:1px solid #dcebef;padding:4px 8px;border-radius:9px}
+.profile-tag strong{flex:none;background:#0b8298;color:white;border-radius:5px;padding:3px 6px;font-weight:900;font-size:11px}
+.profile-tag.b strong{background:#ab4b91}
+.profile-tag span{overflow-wrap:anywhere;line-height:1.25}
 .profile-controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
 .profile-controls label{font-size:11px;font-weight:780;color:#64828e}
 .profile-controls input{display:block;margin-top:5px;width:100%;height:42px;padding:9px 11px;border:1px solid #d2e3e8;border-radius:10px;background:white;color:#163f4e;font-size:14px;font-weight:780}
-.profile-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0}
-.profile-curvature{display:flex;align-items:center;gap:7px;font-size:11px;color:#5b7884;white-space:nowrap}
-.profile-curvature input{width:17px;height:17px;accent-color:#09879a}
-.profile-actions{display:flex;gap:7px;flex:1;justify-content:flex-end}
-.profile-actions button{min-height:40px;border-radius:10px;padding:8px 13px;font-size:12px;font-weight:840}
-.profile-actions button:disabled{opacity:.45;cursor:not-allowed}
-.profile-run{background:#087e90;color:white;border:1px solid #087e90}
-.profile-reset{background:#fff;border:1px solid #d6e5e9;color:#64808b}
+.profile-bottom{display:flex;align-items:center;justify-content:space-between;gap:9px;margin:12px 0;flex-wrap:wrap}
+.profile-curvature{display:flex;align-items:center;gap:7px;font-size:11px;color:#5b7884;flex:1;min-width:170px;line-height:1.35}
+.profile-curvature input{width:17px;height:17px;flex:none;accent-color:#09879a}
+.profile-run{min-height:40px;background:#087e90;color:white;border:1px solid #087e90;border-radius:10px;padding:8px 17px;font-size:12px;font-weight:840;white-space:nowrap}
+.profile-run:disabled{opacity:.45;cursor:not-allowed}
 .profile-result{margin-top:6px;padding:12px 8px 5px;border-top:1px solid #e3eef0}
 .profile-result-line{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 3px}
 .profile-result-line strong{font-size:12px;color:#16835f}
@@ -137,16 +131,12 @@ body.search-active .header{z-index:850}
 .profile-marker{background:transparent!important;border:0!important}
 .profile-marker>div{width:30px;height:30px;border:3px solid white;border-radius:10px;background:#087f9b;color:white;display:grid;place-items:center;font-weight:900;box-shadow:0 2px 8px #123c4c8c}
 .profile-marker.b>div{background:#ab4b91}
-@media(max-width:385px){
- .profile-picks,.profile-controls{gap:7px}
- .profile-pick{padding:8px 7px;gap:6px;min-height:56px;font-size:12px}
- .profile-pick .profile-pin{width:27px;height:27px}
- .profile-actions button{padding:8px 9px}
-}
-
+.profile-map-label{background:#fffffff2;border:1px solid #98c6d0;border-radius:7px;box-shadow:0 2px 9px #163d4b2e;padding:4px 7px;color:#164758;font:750 11px/1.2 Inter,-apple-system,Segoe UI,sans-serif;max-width:180px;white-space:normal;overflow-wrap:anywhere}
+.profile-map-label:before{display:none}
+@media(max-width:355px){.profile-choice-row{gap:6px}.profile-choice-row button{font-size:11px;padding:8px 5px}.profile-curvature{min-width:145px;font-size:10px}.profile-run{padding:8px 10px}}
 </style></head><body>
 <div id="map" aria-label="Carte interactive SIA"></div>
-<header class="header"><div class="brand"><span class="logo"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="white" d="M3 23 C8 13 13 10 18 15 C21 19 25 17 30 10 C29 20 23 24 18 23 C14 22 12 18 9 19 C7 19 5 21 3 23 Z"/></svg></span><span class="brandtitle"><strong>VOLIÈRE</strong><small>ATLAS SIA · V2R5</small></span><span id="status" class="status">Chargement SIA…</span></div>
+<header class="header"><div class="brand"><span class="logo"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="white" d="M3 23 C8 13 13 10 18 15 C21 19 25 17 30 10 C29 20 23 24 18 23 C14 22 12 18 9 19 C7 19 5 21 3 23 Z"/></svg></span><span class="brandtitle"><strong>VOLIÈRE</strong><small>ATLAS SIA · V2R6</small></span><span id="status" class="status">Chargement SIA…</span></div>
 <div class="searchbar"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="10" cy="10" r="7.3"/><path d="m16 16 5 5"/></svg><input id="q" type="search" placeholder="Secteur, LFBO, 125.030…" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Recherche SIA"><button id="clear" type="button" aria-label="Effacer">×</button></div></header>
 <div id="hint" class="hint">Activez les couches pour afficher les données SIA</div><div id="toast" class="toast"></div>
 <nav class="dock" aria-label="Affichage cartographique">
@@ -295,11 +285,14 @@ function profileMapClick(latlng){
  profileSetPoint(profilePick==='A'?0:1,sel.point,sel.label);
  return true;
 }
-function profileBeginPick(i){
- profilePick=i===0?'A':'B';
+function profileBeginPick(){
+ // Un seul bouton redémarre entièrement la sélection A puis B.
+ profileInvalidate();profileEnds=[null,null];profileLabels=['',''];
+ profileUpdateMarkers();
+ profilePick='A';
  hide();
  map.getContainer().style.cursor='crosshair';
- notice('Profil : touchez la carte pour définir '+profilePick);
+ notice('Profil : sélectionnez le point A');
 }
 function profileClear(){
  profileInvalidate();profileEnds=[null,null];profileLabels=['',''];
@@ -354,16 +347,8 @@ function profileChart(r){
 }
 function profilesPanel(){
  const hasBoth=!!(profileEnds[0]&&profileEnds[1]),r=profileResult;
- const button=i=>{
-  const named=!!profileLabels[i],placed=!!profileEnds[i];
-  const name=named?profileLabels[i]:'',action=placed?'Modifier':'Choisir';
-  return '<button type="button" id="pickProfile'+i+'" class="profile-pick '+(placed?'ready':'')+
-   '" aria-label="'+esc(action+' le point '+(i?'B':'A')+(named?' : '+name:''))+'"'+
-   (placed?' title="'+esc(profileName(i))+'"':'')+'>'+
-   '<span class="profile-pin '+(i?'b':'')+'">'+(i?'B':'A')+'</span>'+
-   '<span class="pick-text">'+(named?'<span class="pick-name">'+esc(name)+'</span><small>Modifier</small>':action)+'</span>'+
-   (placed?'<span class="pick-status" aria-hidden="true">✓</span>':'')+'</button>';
- };
+ const names=profileEnds.map((p,i)=>p?'<span class="profile-tag '+(i?'b':'')+'"><strong>'+(i?'B':'A')+'</strong>'+
+  (profileLabels[i]?'<span>'+esc(profileLabels[i])+'</span>':'<span>✓</span>')+'</span>':'').join('');
  const result=r?'<div class="profile-result"><div class="profile-result-line '+(r.clear?'':'blocked')+'">'+
  '<strong>'+(r.clear?'✓ Vue dégagée':'✕ Vue masquée')+'</strong>'+
  '<span>'+(r.dist/1000).toFixed(2)+' km</span></div>'+
@@ -371,18 +356,19 @@ function profilesPanel(){
  '<div class="profile-legend"><span><i style="background:#168e7f"></i>Terrain</span>'+
  '<span><i style="background:'+(r.clear?'#268ad0':'#d35b4a')+'"></i>Visée</span></div></div>':'';
  show('profiles','Profil à vue','',
-  '<div class="profile-picks">'+button(0)+button(1)+'</div>'+
+  '<div class="profile-choice-row">'+
+  '<button type="button" id="profileChoose" class="profile-select">Choisir les points</button>'+
+  '<button type="button" id="profileReset" class="profile-reset">Effacer le tracé</button></div>'+
+  (names?'<div class="profile-selected">'+names+'</div>':'')+
   '<div class="profile-controls">'+
   '<label>Hauteur A (m)<input id="profileHeightA" type="number" inputmode="decimal" min="0" max="2000" step="1" value="'+profileHeights[0]+'"></label>'+
   '<label>Hauteur B (m)<input id="profileHeightB" type="number" inputmode="decimal" min="0" max="2000" step="1" value="'+profileHeights[1]+'"></label></div>'+
   '<div class="profile-bottom">'+
-  '<label class="profile-curvature"><input type="checkbox" id="profileCurved" '+(profileCurvature?'checked':'')+'> Courbure</label>'+
-  '<div class="profile-actions"><button id="profileReset" class="profile-reset">Effacer</button>'+
+  '<label class="profile-curvature"><input type="checkbox" id="profileCurved" '+(profileCurvature?'checked':'')+'> Courbure de la Terre active</label>'+
   '<button id="profileRun" class="profile-run" '+(!hasBoth||profileLoading?'disabled':'')+'>'+
-  (profileLoading?'Chargement…':profileRaw?'Recalculer':'Tracer')+'</button></div></div>'+
+  (profileLoading?'Chargement…':profileRaw?'Recalculer':'Tracer')+'</button></div>'+
   result);
- $('pickProfile0').onclick=()=>profileBeginPick(0);
- $('pickProfile1').onclick=()=>profileBeginPick(1);
+ $('profileChoose').onclick=profileBeginPick;
  $('profileReset').onclick=profileClear;
  $('profileRun').onclick=profileFetch;
  for(let i=0;i<2;i++){
@@ -399,7 +385,6 @@ function profilesPanel(){
   profileUpdateTrack();profilesPanel();
  };
 }
-
 async function profileFetch(){
  if(!profileEnds[0]||!profileEnds[1]||profileLoading)return;
  const nonce=++profileNonce,ends=profileEnds.map(p=>L.latLng(p.lat,p.lng));
