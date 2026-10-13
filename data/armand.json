@@ -113,6 +113,15 @@
       "done": "FFT sur Lognes, écoute de l'ATIS sur la freq SOL.\nÉtude de l'architecture\nDéplacement le 07/10 pour identification du problème\nUne intermodulation sur la détresse\nDeux recepteurs défaillants.",
       "future": "CR de déplacement à finaliser\nDemander le changement de fréquence de l'ATIS\nÉchange standard des 2 recepteurs et vérification du relais à faire.",
       "effort": "heavy"
+    },
+    {
+      "id": "id_7i43il0j",
+      "category": "Formation",
+      "customCategory": "",
+      "title": "Réunion interne",
+      "done": "Transmission de document et réunion de formation avec Vincent MONTI",
+      "future": "Il est formé 👍",
+      "effort": "light"
     }
   ]
 }
