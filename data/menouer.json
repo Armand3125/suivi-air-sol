@@ -518,15 +518,6 @@
       "done": "Recevoir et tester le prototype d’antenne Rayan.",
       "future": "",
       "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-labo-cavites",
-      "category": "Activité Labo",
-      "customCategory": "",
-      "title": "Cavités Télérad – essais de réglage",
-      "done": "",
-      "future": "Refaire des tests de réglage des cavités Telerad pour bien les manipuler et maîtriser leur réglage.",
-      "effort": "light"
     }
   ]
 }
