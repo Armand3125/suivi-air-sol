@@ -28,9 +28,9 @@
       "id": "armand-s03",
       "category": "Activité Labo",
       "customCategory": "",
-      "title": "Outils / labo",
-      "done": "Rangement / suivi labo. Création de Conf_Telerad pour comparer les confs des équipements 2G.",
-      "future": "Réunion de présentation des Outils le 15/10, Évolution des outils développés",
+      "title": "Conf_Telerad",
+      "done": "Création de Conf_Telerad pour comparer les confs des équipements 2G.",
+      "future": "Évolution de l'outil pour référencer tous les paramètres.",
       "effort": "heavy"
     },
     {
