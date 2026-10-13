@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#082d3a"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Volière V1R13</title>
+<link rel="icon" href="./icon.svg?v=V1R13" type="image/svg+xml"><link rel="manifest" href="./manifest.webmanifest?v=V1R13">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{--ink:#102d3a;--dark:#082d3a;--sea:#14c6b4;--border:#dceaea;--muted:#718b94;--safe:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;font:14px/1.4 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink)}
+button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
+#map{position:fixed;inset:0;background:#d8e5ea}.leaflet-control-attribution{font-size:9px!important}.leaflet-top.leaflet-left{top:138px;left:8px}.leaflet-control-zoom{border:0!important;box-shadow:0 3px 15px #092b3a44!important}.leaflet-control-zoom a{width:38px!important;height:39px!important;line-height:39px!important;color:#0c6b75!important}
+.header{position:absolute;z-index:500;top:calc(10px + env(safe-area-inset-top,0px));left:12px;right:12px;max-width:620px;margin:auto;pointer-events:none}
+.brand{height:49px;display:flex;align-items:center;gap:10px;padding:6px 10px;background:linear-gradient(115deg,#082d3afa,#0a5260f2);border:1px solid #7dd8d25c;border-radius:16px;color:white;box-shadow:0 8px 25px #092d3a48}
+.logo{height:36px;width:36px;display:grid;place-items:center;background:linear-gradient(145deg,#33e0c9,#087c91);border:1px solid #a4ffed99;border-radius:12px;flex:none}
+.logo svg{height:26px;width:26px}.brandtitle{min-width:0;flex:1}.brandtitle strong{display:block;letter-spacing:.09em;font-weight:930;font-size:16px;line-height:1.1}.brandtitle small{display:block;margin-top:4px;font-size:9px;letter-spacing:.12em;color:#9ce6e4;font-weight:850}
+.status{border:1px solid #74c6c354;background:#07394799;border-radius:99px;padding:6px 9px;font-size:10px;max-width:43%;color:#daffff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.status:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#eeb959;margin-right:6px}.status.ok:before{background:#38e0b8}
+.searchbar{display:flex;align-items:center;gap:11px;margin-top:9px;height:53px;padding:0 10px 0 16px;background:#fbffff;border:1px solid white;border-radius:16px;box-shadow:0 6px 22px #132e3b4a;pointer-events:auto}
+.searchbar svg{width:19px;height:19px;stroke:#15858c;flex:none}.searchbar input{border:0;outline:0;background:transparent;min-width:0;flex:1;height:48px;color:#1c404d;font-size:14px}.searchbar input::placeholder{color:#8fa4aa}
+#clear{display:none;border:0;border-radius:10px;height:34px;width:34px;background:#e6f4f4;color:#1a6e7a;font-size:23px}
+.dock{position:absolute;z-index:501;left:50%;bottom:calc(11px + var(--safe));transform:translateX(-50%);width:min(468px,calc(100% - 20px));background:#072e3bef;border:1px solid #59c4c078;border-radius:21px;padding:6px;display:grid;grid-template-columns:repeat(3,1fr);gap:5px;box-shadow:0 9px 28px #0b324c61;backdrop-filter:blur(16px)}
+.nav{min-height:59px;border:0;background:transparent;border-radius:15px;color:#abdae0;display:grid;align-content:center;justify-items:center;gap:3px;font-size:10px;font-weight:780}.nav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.nav.on{background:linear-gradient(135deg,#39dfc8,#0caab3);color:#073542}
+.hint{position:absolute;z-index:450;left:50%;bottom:calc(86px + var(--safe));transform:translateX(-50%);background:#0b3b4bea;border:1px solid #78d7d37a;color:#eaffff;font-size:11px;padding:8px 12px;border-radius:99px;white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+.toast{display:none;position:absolute;z-index:999;top:calc(135px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:#093b4a;color:white;border-radius:11px;padding:11px 14px;font-size:12px;box-shadow:0 6px 18px #102e4444;max-width:90%;text-align:center}
+.shade{display:none;position:fixed;inset:0;background:#092c3d80;z-index:600}.sheet{position:fixed;z-index:650;bottom:0;left:0;right:0;max-width:650px;margin:auto;background:#fcffff;border-radius:23px 23px 0 0;box-shadow:0 -8px 33px #113a4e55;max-height:min(80dvh,800px);display:flex;flex-direction:column;transform:translateY(105%);transition:transform .2s ease}.sheet.open{transform:translateY(0)}.grab{height:5px;width:39px;border-radius:99px;background:#c0d8da;margin:9px auto 5px;flex:none}
+.head{padding:9px 15px 12px;display:flex;align-items:center;gap:12px;justify-content:space-between;border-bottom:1px solid var(--border)}.head h2{font-size:19px;margin:0}.head p{margin:3px 0 0;font-size:11px;color:var(--muted)}.close{width:37px;height:37px;flex:none;border:0;border-radius:10px;background:#e6f4f4;font-size:23px;color:#265763}
+.body{padding:15px 16px calc(24px + var(--safe));overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}.section+.section{margin-top:19px;padding-top:17px;border-top:1px solid var(--border)}.label{font-size:10px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:#3a858b;margin:0 0 9px}
+.layers{display:grid;grid-template-columns:1fr 1fr;gap:8px}.layer{display:flex;align-items:center;text-align:left;gap:9px;border:1px solid #dce9e9;padding:10px;border-radius:13px;min-height:58px;background:white;color:#486d76}.layer.on{background:#e5f8f4;border-color:#77d6c9;color:#164f57}.dot{width:13px;height:13px;background:var(--c);border-radius:4px;flex:none}.layer b{font-size:12px;display:block}.layer small{font-size:10px;display:block;color:var(--muted)}.layer em{margin-left:auto;font-style:normal;color:#0bb49d}
+.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{border:1px solid #d6e8e7;border-radius:99px;padding:8px 11px;background:#f3f9f8;color:#51717a;font-size:12px;font-weight:800}.chip.on{background:#087e88;color:white;border-color:#087e88}
+.results{display:grid;gap:7px}.item{display:grid;grid-template-columns:5px 1fr auto;align-items:center;gap:12px;width:100%;min-height:62px;border:1px solid #dce9e8;border-radius:12px;background:white;text-align:left;padding:9px;color:#234450}.stripe{height:38px;border-radius:4px;background:var(--c)}.item b{display:block;font-size:13px}.item small{display:block;font-size:11px;color:var(--muted);margin-top:4px}.item .arrow{font-size:22px;color:#9eb2b7}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:9px 12px;border-radius:10px;border:1px solid #a8dad5;background:#e9f8f5;color:#105c68;font-size:12px;font-weight:790}.btn.muted{background:white;border-color:#d9e8e7;color:#486c77}.mutedtext{font-size:12px;color:var(--muted);line-height:1.55}.buttons{display:flex;gap:8px;flex-wrap:wrap}
+.hero{display:flex;gap:11px;align-items:center;margin-bottom:14px}.hero .block{width:46px;height:46px;border-radius:12px;background:var(--c);color:white;font-size:10px;font-weight:900;display:grid;place-items:center;flex:none}.hero h3{font-size:17px;margin:0}.hero p{margin:3px 0 0;font-size:11px;color:var(--muted)}.levels{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:13px}.level{padding:10px;border-radius:10px;background:#eaf8f5}.level small{display:block;color:#709099;text-transform:uppercase;letter-spacing:.08em;font-size:9px}.level b{display:block;font-size:17px;color:#075d67;margin-top:4px}
+.kv{display:grid;grid-template-columns:minmax(90px,34%) 1fr;margin:9px 0}.kv dt,.kv dd{padding:9px 0;border-top:1px solid var(--border);font-size:12px;margin:0;overflow-wrap:anywhere}.kv dt{color:var(--muted);padding-right:8px}.kv dd{font-weight:660;white-space:pre-line}.freq{border:1px solid #d4ede9;background:#ebf9f6;padding:9px;border-radius:10px;margin:7px 0}.freq b{font-size:14px;color:#0b6b76}.freq small{display:block;color:#60818d;margin-top:3px}
+.warning{background:#fff8e9;border:1px solid #eddfc1;color:#816e40;border-radius:11px;padding:10px;margin-top:13px;font-size:11px;line-height:1.5}.point{width:16px;height:16px;border-radius:4px;transform:rotate(45deg);background:var(--c);border:2px solid var(--point-border,white);box-shadow:0 0 0 1px #164850,0 3px 9px #133b495c}.leaflet-marker-icon.apin{background:transparent;border:none!important}
+@media(max-height:670px){.brand{height:43px}.leaflet-top.leaflet-left{top:124px}}@media(min-width:700px){.sheet{bottom:14px;border-radius:24px;max-height:75dvh}}@media(prefers-reduced-motion:reduce){.sheet{transition:none}}
+
+.freqcat{margin:9px 0;padding:11px;border:1px solid #d9e9e7;border-radius:12px;background:#f0f9f8}
+.freqcat strong{display:block;margin-bottom:7px;font-size:11px;letter-spacing:.07em;color:#0d6572}
+.freqnums{display:flex;flex-wrap:wrap;gap:7px}
+.freqnum{display:inline-flex;align-items:center;padding:7px 10px;background:#fff;border:1px solid #c7e4e0;border-radius:9px;font-weight:850;font-size:14px;font-variant-numeric:tabular-nums;color:#14434f}
+.label small{font-size:10px;color:#66808a;font-weight:650;text-transform:none}
+.buttons .vac{text-decoration:none;background:#0c8587;color:white;border-color:#0c8587;min-height:42px}
+.buttons .vac:hover{background:#086a76}
+
+/* V1R13 — panneaux de recherche adaptés au clavier natif */
+body.search-active .header{z-index:850}
+.sheet.searchsheet .body{min-height:0}
+.sheet.searchsheet .searchchips{position:sticky;top:-15px;z-index:3;background:#fcffff;padding:8px 0 11px;margin-bottom:10px!important;border-bottom:1px solid #dceaea}
+@media(max-width:699px){
+ .sheet.searchsheet{
+  top:var(--search-panel-top,135px);bottom:auto;left:8px;right:8px;max-width:none;
+  height:var(--search-panel-height,calc(100dvh - 145px));max-height:none;
+  border-radius:17px;transform:none;transition:none;margin:0;
+ }
+ .sheet.searchsheet:not(.open){visibility:hidden;pointer-events:none}
+ .sheet.searchsheet .grab{display:none}
+ .sheet.searchsheet .head{padding:7px 11px}
+ .sheet.searchsheet .head h2{font-size:15px}
+ .sheet.searchsheet .head p{display:none}
+ .sheet.searchsheet .body{flex:1;overflow-y:auto;padding:8px 9px 12px}
+ .sheet.searchsheet .searchchips{
+  top:-8px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;
+  padding:8px 0 10px;margin:0 0 9px!important
+ }
+ .sheet.searchsheet .searchchips .chip{
+  min-width:0;padding:8px 2px;border-radius:9px;
+  font-size:clamp(9px,2.55vw,11px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+ }
+}
+
+/* Volière V1R13 — 3 menus : Secteurs, Couches, Fond */
+.freqresults{display:grid;gap:8px}
+.freqresult{border:1px solid #d9e8e8;border-left:4px solid var(--c,#0c8791);border-radius:12px;padding:10px 12px;background:#fff}
+.freqresult-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.freqresult-head b{font-weight:900;font-size:16px;color:#0a4c5b;font-variant-numeric:tabular-nums}
+.freqresult-head b small{font-size:10px;color:#66808a}
+.freqservice{padding:5px 9px;background:#e9f8f6;color:#0c6976;border-radius:8px;font-weight:850;font-size:11px}
+.freqowner{margin-top:5px;font-size:12px;font-weight:700;color:#244754}
+.frequnit{margin-top:3px;font-size:11px;color:#657f8a}
+.searchguide{margin:0 0 10px}
+#sectorToggle{width:100%}
+.airport-filter{margin-top:13px;padding-top:14px;border-top:1px solid var(--border)}
+.airport-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.airport-options .chip{min-height:43px;border-radius:11px}
+.airport-options .chip small{font-weight:700;opacity:.8;margin-left:7px}
+.airport-filter .mutedtext{font-size:10px;margin:8px 0 0}
+</style></head><body>
+<div id="map" aria-label="Carte interactive SIA"></div>
+<header class="header"><div class="brand"><span class="logo"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="white" d="M3 23 C8 13 13 10 18 15 C21 19 25 17 30 10 C29 20 23 24 18 23 C14 22 12 18 9 19 C7 19 5 21 3 23 Z"/></svg></span><span class="brandtitle"><strong>VOLIÈRE</strong><small>ATLAS SIA · V1R13</small></span><span id="status" class="status">Chargement SIA…</span></div>
+<div class="searchbar"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="10" cy="10" r="7.3"/><path d="m16 16 5 5"/></svg><input id="q" type="search" placeholder="Secteur, LFBO, 125.030…" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Recherche SIA"><button id="clear" type="button" aria-label="Effacer">×</button></div></header>
+<div id="hint" class="hint">Activez les couches pour afficher les données SIA</div><div id="toast" class="toast"></div>
+<nav class="dock" aria-label="Affichage cartographique">
+<button class="nav" id="sectors" type="button" aria-label="Ouvrir le menu des secteurs" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="m3 7 9-4 9 4v10l-9 4-9-4zM3 7l9 5 9-5M12 12v9"/></svg>Secteurs</button>
+<button class="nav" id="elements" type="button" aria-label="Configurer les couches"><svg viewBox="0 0 24 24"><path d="m2 8 10-5 10 5-10 5zM2 13l10 5 10-5M2 18l10 5 10-5"/></svg>Couches</button>
+<button class="nav" id="bases" type="button"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1"/><path d="m3 18 6-6 4 4 3-3 5 5"/></svg>Fond</button>
+</nav>
+<div class="shade" id="shade"></div><section id="sheet" class="sheet" role="dialog" aria-hidden="true" aria-label="Données SIA"><div class="grab"></div><div class="head"><div><h2 id="title"></h2><p id="sub"></p></div><button id="close" type="button" class="close">×</button></div><div id="body" class="body"></div></section>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+'use strict';
+const $=x=>document.getElementById(x);
+const esc=x=>String(x==null?'':x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=x=>String(x||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9.]+/g,' ').trim();
+// Couleurs SIA reprises strictement de Biome V12R4.
+const cfg={airspaces:['Secteurs','#1559c7',false],aerodromes:['Aérodromes','#2f9e44',false],heliports:['Héliports','#ffd43b',false],radionav:['RadioNav','#7048e8',false],approach:['ILS','#0b7285',false],navfix:['NavFix','#e03131',false],routes:['Routes','#f08c00',false],runways:['Pistes','#212529',false]};
+// Comme dans Biome, les secteurs utilisent le bleu de couche, sauf biomeColor explicitement fourni.
+const labels={type:'Type',code:'Code',name:'Nom',class:'Classe',lower:'Plancher',upper:'Plafond',work_hr:'Horaires / activation',service:'Service ATS',frequency:'Fréquences',frequency_details:'Détails fréquences',remarks:'Remarques',alt_ft:'Altitude (ft)',status:'Statut',manager:'Gestionnaire',phone:'Téléphone',afs:'AFS',traffic_ifr:'IFR',traffic_vfr:'VFR',operator:'Exploitant',night:'Nuit',hours:'Horaires',usage:'Usage',range:'Portée',station:'Station',cat:'Catégorie',length_m:'Longueur (m)',width_m:'Largeur (m)',runway:'QFU',surface:'Surface',origin:'Origine',end:'Destination',route_type:'Route',distance_nm:'Distance (NM)',moca:'MOCA',mag_track:'Route magnétique',acc:'ACC',lighting:'Balisage',resistance:'Résistance',vertical_range_fl:'Portée FL',orientation_geo:'Orientation',lda1:'LDA 1',lda2:'LDA 2'};
+let features=[],groups={},finder=[],lookup=new Map(),frequencyEntries=[],loaded=false,type='ALL',airportMode='all',category='all',mode='',bgLayer=null,bgName='ign',marker=null,tick=null;
+Object.keys(cfg).forEach(k=>groups[k]=[]);
+const OSM='https://tile.openstreetmap.org/{z}/{x}/{y}.png',SAT='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+const IGN='https://data.geopf.fr/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&FORMAT=image/png&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}';
+const GRIS='https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+const backgrounds={
+ ign:['Plan IGN',IGN,OSM,'&copy; IGN Géoplateforme · OpenStreetMap'],
+ sat:['Satellite',SAT,OSM,'&copy; Esri, Maxar · OpenStreetMap'],
+ gris:['Esri gris',GRIS,OSM,'&copy; Esri, HERE, Garmin · OpenStreetMap']
+};
+const SafeLayer=L.TileLayer.extend({createTile(coords,done){
+ const im=document.createElement('img');im.alt='';const a=[this.getTileUrl(coords),L.Util.template(this.options.backup,{x:coords.x,y:coords.y,z:coords.z})];
+ let i=0,ended=false;const finish=e=>{if(ended)return;ended=true;im.onload=im.onerror=null;done(e||null,im)};
+ im.onload=()=>finish(null);im.onerror=()=>{if(i<a.length)im.src=a[i++];else{im.style.background='#cee0e5';finish(new Error('tile unavailable'))}};im.src=a[i++];return im;
+}});
+const map=L.map('map',{center:[46.5,2.2],zoom:6,zoomControl:false,preferCanvas:true,zoomSnap:1,zoomDelta:1,worldCopyJump:true});
+L.control.zoom({position:'topleft'}).addTo(map);const cv=L.canvas({padding:.4,tolerance:8});
+const areas=L.layerGroup().addTo(map),objects=L.layerGroup().addTo(map);
+const searchFocusPane=map.createPane('searchFocusPane');
+searchFocusPane.style.zIndex='680';searchFocusPane.style.pointerEvents='none';
+const searchFocusRenderer=L.svg({pane:'searchFocusPane'});
+const searchFocus=L.layerGroup().addTo(map);
+function setBase(k){if(!backgrounds[k])return;const x=backgrounds[k],next=new SafeLayer(x[1],{backup:x[2],attribution:x[3],maxZoom:19,maxNativeZoom:k==='sat'||k==='ign'||k==='gris'?18:19,keepBuffer:3,updateWhenIdle:true});next.addTo(map);next.bringToBack();if(bgLayer)map.removeLayer(bgLayer);bgLayer=next;bgName=k;try{localStorage.setItem('voliere-v1r6-base',k)}catch(e){}}
+try{setBase(localStorage.getItem('voliere-v1r6-base')||'ign')}catch(e){setBase('ign')}
+function notice(t){$('toast').textContent=t;$('toast').style.display='block';clearTimeout(tick);tick=setTimeout(()=>$('toast').style.display='none',2900)}
+function status(t){$('status').textContent=t}
+function hide(){
+ $('sheet').classList.remove('open','searchsheet');
+ document.body.classList.remove('search-active');
+ $('sheet').setAttribute('aria-hidden','true');
+ $('shade').style.display='none';mode='';
+}
+function show(k,title,sub,html){
+ mode=k;
+ $('title').textContent=title;$('sub').textContent=sub||'';
+ $('body').innerHTML=html;$('body').scrollTop=0;
+ document.body.classList.toggle('search-active',k==='search');
+ $('sheet').classList.toggle('searchsheet',k==='search');
+ $('shade').style.display='block';
+ $('sheet').classList.add('open');$('sheet').setAttribute('aria-hidden','false');
+ if(k==='search')refreshSearchViewport();
+}
+$('shade').onclick=hide;$('close').onclick=hide;
+function label(f){const p=f.properties;return p.label||[p.type,p.name,p.code].filter(Boolean).join(' ')||'SIA'}
+function color(f){const p=f.properties;const custom=String(p.biomeColor||'');return p.layer==='airspaces' ? (/^#[0-9a-f]{6}$/i.test(custom)?custom:cfg.airspaces[1]) : cfg[p.layer][1]}
+function desc(f){const p=f.properties;return p.layer==='airspaces'?'Secteur · '+[p.lower||'—',p.upper||'—'].join(' / '):[p.code,p.frequency&&p.frequency+' MHz'].filter(Boolean).join(' · ')}
+function bb(g){let a=[Infinity,Infinity,-Infinity,-Infinity];function run(c){if(!Array.isArray(c))return;if(typeof c[0]==='number'){a[0]=Math.min(a[0],c[0]);a[1]=Math.min(a[1],c[1]);a[2]=Math.max(a[2],c[0]);a[3]=Math.max(a[3],c[1]);return}c.forEach(run)}run(g.coordinates);return a}
+function overlap(a,b){return a[0]<=b[2]&&a[2]>=b[0]&&a[1]<=b[3]&&a[3]>=b[1]}
+function visibleBox(){const b=map.getBounds().pad(.15);return[b.getWest(),b.getSouth(),b.getEast(),b.getNorth()]}
+function allowed(f){const p=String(f.properties.type||'').toUpperCase();return type==='ALL'||(type==='Autres'?!['CTR','TMA','R','D','P'].includes(p):p===type)}
+function isIFRAerodrome(f){return String(f.properties.traffic_ifr||'').trim().toLowerCase()==='oui'}
+function redraw(){if(!loaded)return;const b=visibleBox();areas.clearLayers();objects.clearLayers();if(cfg.airspaces[2]){const a=groups.airspaces.filter(f=>overlap(f._b,b)&&allowed(f));if(a.length)areas.addLayer(L.geoJSON({type:'FeatureCollection',features:a},{renderer:cv,interactive:false,style:f=>({color:color(f),weight:2.6,opacity:.96,fill:false,interactive:false})}))}
+ for(const k of Object.keys(cfg)){if(k==='airspaces'||!cfg[k][2]||(k==='navfix'&&map.getZoom()<8))continue;const fs=groups[k].filter(f=>overlap(f._b,b)&&(k!=='aerodromes'||airportMode==='all'||isIFRAerodrome(f))).slice(0,1300);for(const f of fs){let o;if(f.geometry.type==='Point'){const c=f.geometry.coordinates;o=L.marker([c[1],c[0]],{keyboard:false,icon:L.divIcon({className:'apin',html:'<div class="point" style="--c:'+color(f)+';--point-border:'+(k==='heliports'?'#8a6d00':'white')+'"></div>',iconSize:[27,27],iconAnchor:[13,13]})})}else{o=L.geoJSON(f,{renderer:cv,style:{color:color(f),weight:2}})}
+ o.on('click',e=>{if(e.originalEvent)L.DomEvent.stopPropagation(e.originalEvent);detail(f)});objects.addLayer(o)}}}
+let timer=0;map.on('moveend',()=>{clearTimeout(timer);timer=setTimeout(redraw,130)});
+function inRing(p,r){let hit=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const a=r[i],b=r[j];if(((a[1]>p.lat)!==(b[1]>p.lat))&&(p.lng<(b[0]-a[0])*(p.lat-a[1])/(b[1]-a[1])+a[0]))hit=!hit}return hit}
+function inPoly(p,r){if(!r||!r[0]||!inRing(p,r[0]))return false;for(let i=1;i<r.length;i++)if(inRing(p,r[i]))return false;return true}
+function inside(f,p){const g=f.geometry;return g.type==='Polygon'?inPoly(p,g.coordinates):g.type==='MultiPolygon'&&g.coordinates.some(v=>inPoly(p,v))}
+function at(p){return groups.airspaces.filter(f=>allowed(f)&&p.lng>=f._b[0]&&p.lng<=f._b[2]&&p.lat>=f._b[1]&&p.lat<=f._b[3]&&inside(f,p)).sort((a,b)=>(a._b[2]-a._b[0])*(a._b[3]-a._b[1])-(b._b[2]-b._b[0])*(b._b[3]-b._b[1]))}
+function id(f){return String(f.properties.id||f.id)}
+function row(f){return '<button type="button" class="item" data-id="'+esc(id(f))+'"><span class="stripe" style="--c:'+color(f)+'"></span><span><b>'+esc(label(f))+'</b><small>'+esc(desc(f))+'</small></span><span class="arrow">›</span></button>'}
+function bind(){document.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{const f=lookup.get(b.dataset.id);if(f)detail(f)})}
+function go(f){
+ searchFocus.clearLayers();
+ const tint=color(f);
+ const highlight=L.geoJSON(f,{
+  pane:'searchFocusPane',renderer:searchFocusRenderer,interactive:false,
+  pointToLayer:(feature,latlng)=>L.circleMarker(latlng,{
+   pane:'searchFocusPane',renderer:searchFocusRenderer,interactive:false,
+   radius:12,color:'#ffffff',weight:4,opacity:1,fillColor:tint,fillOpacity:.95
+  }),
+  style:feature=>feature.geometry.type==='Point'?({color:'#ffffff',weight:4,opacity:1,fill:true,fillColor:tint,fillOpacity:.95}):({color:tint,weight:4,opacity:1,fill:false,interactive:false,dashArray:'10 5'})
+ });
+ searchFocus.addLayer(highlight);
+ if(f.geometry.type==='Point'){
+  const c=f.geometry.coordinates;
+  map.setView([c[1],c[0]],Math.max(map.getZoom(),12));
+ }else{
+  const bounds=highlight.getBounds();
+  if(bounds.isValid())map.fitBounds(bounds.pad(.10),{padding:[32,32],maxZoom:12});
+ }
+ $('hint').textContent='Sélection : '+label(f);
+}
+
+const VAC_ANCHOR=Date.UTC(2025,4,15),VAC_CYCLE=28*24*60*60*1000;
+const VAC_MONTHS=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+function vacUrl(code){
+ const icao=String(code||'').trim().toUpperCase();
+ if(!/^[A-Z]{4}$/.test(icao))return '';
+ const now=new Date(),today=Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate());
+ const date=new Date(VAC_ANCHOR+Math.floor((today-VAC_ANCHOR)/VAC_CYCLE)*VAC_CYCLE);
+ const folder='eAIP_'+String(date.getUTCDate()).padStart(2,'0')+'_'+VAC_MONTHS[date.getUTCMonth()]+'_'+date.getUTCFullYear();
+ return 'https://www.sia.aviation-civile.gouv.fr/media/dvd/'+folder+'/Atlas-VAC/PDF_AIPparSSection/VAC/AD/AD-2.'+encodeURIComponent(icao)+'.pdf';
+}
+function frequenciesByCategory(p){
+ const unique=new Map();
+ const details=Array.isArray(p.frequency_details)?p.frequency_details:[];
+ if(details.length){
+  for(const row of details){
+   if(!row)continue;
+   const value=String(row.frequency||row.transmission||row.reception||'').replace(/\s*MHZ\s*$/i,'').trim();
+   if(!value)continue;
+   const key=value.toUpperCase();
+   if(!unique.has(key))unique.set(key,{value,types:new Set()});
+   unique.get(key).types.add(String(row.display_type||row.service_type||row.frequency_type_label||row.service_label||'AUTRES').trim().toUpperCase()||'AUTRES');
+  }
+ }else if(p.frequency){
+  for(const part of String(p.frequency).split(/\s*[|;,]\s*/)){
+   const value=part.replace(/\s*MHZ\s*$/i,'').trim();
+   if(value&&!unique.has(value.toUpperCase()))unique.set(value.toUpperCase(),{value,types:new Set(['FRÉQUENCES'])});
+  }
+ }
+ if(!unique.size)return '';
+ const cats=new Map();
+ for(const entry of unique.values()){
+  const name=[...entry.types].sort().join(' / ')||'AUTRES';
+  if(!cats.has(name))cats.set(name,[]);
+  cats.get(name).push(entry.value);
+ }
+ return '<div class="section"><div class="label">Fréquences par service <small>MHz</small></div>'+
+ [...cats.entries()].sort((a,b)=>a[0].localeCompare(b[0],'fr')).map(([name,values])=>'<div class="freqcat"><strong>'+esc(name)+'</strong><div class="freqnums">'+values.map(v=>'<span class="freqnum">'+esc(v)+'</span>').join('')+'</div></div>').join('')+'</div>';
+}
+function detail(f){
+ if(document.activeElement===$('q'))$('q').blur();
+ const p=f.properties;
+ let out='<div class="hero"><span class="block" style="--c:'+color(f)+'">'+esc(String(p.type||p.code||'SIA').slice(0,7))+'</span><div><h3>'+esc(label(f))+'</h3><p>'+esc(cfg[p.layer][0])+'</p></div></div>';
+ if(p.layer==='airspaces')out+='<div class="levels"><div class="level"><small>Plancher</small><b>'+esc(p.lower||'—')+'</b></div><div class="level"><small>Plafond</small><b>'+esc(p.upper||'—')+'</b></div></div>';
+ const basic=Object.entries(labels).filter(v=>!['frequency','frequency_details'].includes(v[0])&&p[v[0]]!=null&&p[v[0]]!==''&&typeof p[v[0]]!=='object'&&!(p.layer==='airspaces'&&['lower','upper'].includes(v[0])));
+ if(basic.length)out+='<dl class="kv">'+basic.map(v=>'<dt>'+esc(v[1])+'</dt><dd>'+esc(String(p[v[0]]))+'</dd>').join('')+'</dl>';
+ out+=frequenciesByCategory(p);
+ let buttons='<button class="btn" id="goto">◎ Afficher sur la carte</button>';
+ if(p.layer==='aerodromes'){
+  const pdf=vacUrl(p.code);
+  if(pdf)buttons+='<a class="btn vac" href="'+esc(pdf)+'" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir la fiche VAC SIA '+esc(p.code)+'">↓ Fiche VAC · '+esc(String(p.code).toUpperCase())+' (PDF)</a>';
+ }
+ out+='<div class="section"><div class="buttons">'+buttons+'</div></div><div class="warning">SIA 01/10/2026 — consultation informative uniquement. Vérifier les publications officielles et NOTAM. Fiches VAC : SIA.</div>';
+ show('detail','Fiche SIA',cfg[p.layer][0],out);
+ $('goto').onclick=()=>{go(f);hide()};
+}
+
+map.on('click',e=>{if(!loaded){notice('Chargement SIA en cours');return}const p=e.latlng,list=cfg.airspaces[2]?at(p):[],c=p.lat.toFixed(6)+', '+p.lng.toFixed(6);show('point','Secteurs à ce point',c,'<div class="section"><div class="label">'+list.length+' espace(s) aérien(s)</div><div class="results">'+(list.length?list.slice(0,65).map(row).join(''):'<p class="mutedtext">Aucun secteur actif dans les filtres.</p>')+'</div></div><div class="section"><button class="btn muted" id="copy">⧉ Copier '+c+'</button></div>');$('copy').onclick=()=>navigator.clipboard.writeText(c).then(()=>notice('Coordonnées copiées')).catch(()=>notice('Copie impossible'));bind()});
+function updateDock(){
+ $('sectors').classList.toggle('on',cfg.airspaces[2]);
+ $('sectors').setAttribute('aria-pressed',cfg.airspaces[2]);
+ $('elements').classList.toggle('on',Object.entries(cfg).some(([key,def])=>key!=='airspaces'&&def[2]));
+}
+function sectorsPanel(){
+ const active=cfg.airspaces[2];
+ show('sectors','Secteurs','Affichage et types d’espaces aériens',
+  '<div class="section"><button type="button" class="layer '+(active?'on':'')+'" id="sectorToggle" aria-pressed="'+active+'">'+
+  '<span class="dot" style="--c:'+cfg.airspaces[1]+'"></span><span><b>Afficher les secteurs</b><small>'+groups.airspaces.length+' secteurs</small></span><em>'+(active?'✓':'+')+'</em></button></div>'+
+  '<div class="section"><div class="label">Types de secteurs</div><div class="chips">'+
+  ['ALL','CTR','TMA','R','D','P','Autres'].map(k=>'<button type="button" class="chip '+(type===k?'on':'')+'" data-type="'+k+'">'+(k==='ALL'?'Tous':k)+'</button>').join('')+'</div></div>');
+ $('sectorToggle').onclick=()=>{cfg.airspaces[2]=!cfg.airspaces[2];redraw();updateDock();sectorsPanel()};
+ document.querySelectorAll('[data-type]').forEach(b=>b.onclick=()=>{type=b.dataset.type;redraw();updateDock();sectorsPanel()});
+}
+function elementsPanel(){
+ const airportTotal=groups.aerodromes.length,airportIFR=groups.aerodromes.filter(isIFRAerodrome).length;
+ show('elements','Couches','Aérodromes, navigation et infrastructures',
+  '<div class="section"><div class="layers">'+Object.entries(cfg).filter(([key])=>key!=='airspaces').map(([key,def])=>
+   '<button type="button" class="layer '+(def[2]?'on':'')+'" data-layer="'+key+'" aria-pressed="'+def[2]+'">'+
+   '<span class="dot" style="--c:'+def[1]+'"></span><span><b>'+def[0]+'</b><small>'+groups[key].length+' objets</small></span><em>'+(def[2]?'✓':'+')+'</em></button>'
+  ).join('')+'</div>'+
+  '<div class="airport-filter"><div class="label">Filtre aérodromes</div><div class="chips airport-options" role="group" aria-label="Aérodromes à afficher">'+
+  '<button type="button" class="chip '+(airportMode==='all'&&cfg.aerodromes[2]?'on':'')+'" data-airport="all" aria-pressed="'+(airportMode==='all'&&cfg.aerodromes[2])+'">Tous <small>'+airportTotal+'</small></button>'+
+  '<button type="button" class="chip '+(airportMode==='ifr'&&cfg.aerodromes[2]?'on':'')+'" data-airport="ifr" aria-pressed="'+(airportMode==='ifr'&&cfg.aerodromes[2])+'">IFR <small>'+airportIFR+'</small></button>'+
+  '</div><p class="mutedtext">Choisir un filtre active la couche Aérodromes.</p></div></div>');
+ document.querySelectorAll('[data-layer]').forEach(b=>b.onclick=()=>{cfg[b.dataset.layer][2]=!cfg[b.dataset.layer][2];redraw();updateDock();elementsPanel()});
+ document.querySelectorAll('[data-airport]').forEach(b=>b.onclick=()=>{airportMode=b.dataset.airport;cfg.aerodromes[2]=true;redraw();updateDock();elementsPanel()});
+}
+function bases(){show('base','Fond de carte','Choisissez un fond fiable','<div class="results">'+Object.entries(backgrounds).map(([k,v])=>'<button class="item" type="button" data-base="'+k+'"><span class="stripe" style="--c:'+(bgName===k?'#12bdac':'#cbdede')+'"></span><span><b>'+v[0]+(bgName===k?' ✓':'')+'</b><small>Une seconde source prend le relais en cas d’échec</small></span><span class="arrow">›</span></button>').join('')+'</div><div class="section"><button class="btn muted" id="refresh">↻ Recharger les tuiles</button></div>');
+document.querySelectorAll('[data-base]').forEach(b=>b.onclick=()=>{setBase(b.dataset.base);hide()});$('refresh').onclick=()=>{setBase(bgName);hide()}}
+$('sectors').onclick=sectorsPanel;
+$('elements').onclick=elementsPanel;
+$('bases').onclick=bases;
+const searchCategories=[['all','Tout'],['airspaces','Secteurs'],['aerodromes','Aérodromes'],['freq','Freq'],['navfix','NavFix']];
+function extractFrequencyNumber(s){
+ const m=String(s||'').replace(',','.').match(/(?:^|[^\d])(\d{2,3}(?:\.\d{1,3})?)(?![\d.])/);
+ return m?m[1]:null;
+}
+function normalizeFrequency(s){
+ const raw=extractFrequencyNumber(s);
+ return raw===null?null:Number(raw).toFixed(3);
+}
+function describeOwner(f){
+ const p=f.properties;
+ const layer=cfg[p.layer]?.[0]||'Élément';
+ const name=[p.type,p.name,p.code].filter(Boolean).join(' ').trim();
+ return {kind:layer,name:p.layer==='airspaces'?(name||p.label||'Secteur'):(p.label||name||layer)};
+}
+function frequencyRows(f){
+ const p=f.properties,owner=describeOwner(f),out=[],seen=new Set();
+ const add=(raw,service,unit)=>{
+  const key=normalizeFrequency(raw);
+  if(!key)return;
+  const label=String(service||'').trim().toUpperCase()||'FRÉQUENCE';
+  const station=String(unit||'').trim();
+  const dedup=[key,label,station].join('|');
+  if(seen.has(dedup))return;
+  seen.add(dedup);
+  out.push({freq:key,service:label,unit:station,owner:owner.name,kind:owner.kind,feature:f,code:p.code||''});
+ };
+ const detail=Array.isArray(p.frequency_details)?p.frequency_details:[];
+ if(detail.length){
+  detail.forEach(r=>r&&add(r.frequency||r.transmission||r.reception,r.display_type||r.service_type||r.service_label||r.frequency_type_label,r.unit));
+ }else if(p.frequency){
+  String(p.frequency).split(/\s*[|;,]\s*/).forEach(freq=>add(freq,p.service_type||p.type||'Fréquence',p.station));
+ }
+ return out;
+}
+function parseSearch(input){
+ const t=String(input||'').trim();
+ const exact=t.startsWith('"')||t.endsWith('"');
+ const value=t.replace(/^"+|"+$/g,'').trim();
+ const term=norm(value);
+ const numeric=/^\d{2,3}(?:[.,]\d{1,3})?$/.test(value)?normalizeFrequency(value):null;
+ return {raw:value,term,exact,numeric,tokens:term.split(' ').filter(Boolean)};
+}
+function exactText(fields,term){
+ if(!term)return false;
+ return fields.some(x=>{const v=norm(x);return v===term||(' '+v+' ').includes(' '+term+' ')});
+}
+function searchFrequency(frequency,query){
+ const fields=[frequency.owner,frequency.kind,frequency.code,frequency.service,frequency.unit];
+ if(!query.term)return false;
+ if(query.exact){
+  if(query.numeric)return frequency.freq===query.numeric;
+  return exactText([frequency.freq,...fields],query.term);
+ }
+ const full=norm([frequency.freq,...fields].join(' '));
+ return query.tokens.every(t=>full.includes(t));
+}
+function searchWords(text){
+ return String(text||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()
+  .replace(/[^a-z0-9.-]+/g,' ').trim().split(/\s+/).filter(Boolean);
+}
+function matchesFeature(f,source,query){
+ if(!query.term)return false;
+ if(query.numeric){
+  return (f._freqKeys||[]).some(freq=>query.exact?freq===query.numeric:
+   freq.startsWith(query.raw.replace(',','.')));
+ }
+ const p=f.properties;
+ const fields=[p.code,p.name,p.label].filter(Boolean).map(searchWords);
+ const wanted=searchWords(query.raw);
+ if(!wanted.length)return false;
+ if(query.exact){
+  const phrase=wanted.join(' ');
+  return fields.some(words=>words.join(' ')===phrase||(' '+words.join(' ')+' ').includes(' '+phrase+' '));
+ }
+ return wanted.every(token=>fields.some(words=>words.some(word=>
+  word===token||(token.length>=3&&word.startsWith(token))
+ )));
+}
+function frequencyResult(row){
+ return '<div class="freqresult" style="--c:'+esc(cfg[row.feature.properties.layer][1])+'">'+
+ '<div class="freqresult-head"><b>'+esc(row.freq)+' <small>MHz</small></b><span class="freqservice">'+esc(row.service)+'</span></div>'+
+ '<div class="freqowner">'+esc(row.kind)+' · '+esc(row.owner)+'</div>'+
+ (row.unit&&norm(row.owner).indexOf(norm(row.unit))===-1?'<div class="frequnit">'+esc(row.unit)+'</div>':'')+'</div>';
+}
+function refreshSearchViewport(){
+ if(mode!=='search')return;
+ const vv=window.visualViewport;
+ const viewTop=vv?vv.offsetTop:0;
+ const viewHeight=vv?vv.height:window.innerHeight;
+ const searchBottom=$('q').getBoundingClientRect().bottom+7;
+ const panelTop=Math.max(viewTop+6,searchBottom);
+ const free=Math.max(74,viewTop+viewHeight-panelTop-7);
+ const style=document.documentElement.style;
+ style.setProperty('--search-panel-top',Math.round(panelTop)+'px');
+ style.setProperty('--search-panel-height',Math.round(free)+'px');
+}
+function results(){
+ const query=parseSearch($('q').value);
+ $('clear').style.display=$('q').value?'block':'none';
+ const chips='<div class="chips searchchips" role="group" aria-label="Filtrer la recherche">'+
+  searchCategories.map(([key,label])=>'<button type="button" class="chip '+(category===key?'on':'')+
+  '" aria-pressed="'+(category===key)+'" data-cat="'+key+'">'+label+'</button>').join('')+'</div>';
+ const guide='<p class="mutedtext searchguide">Recherche partielle : 125.03 · Recherche exacte : "125.030"</p>';
+ if(!loaded){
+  show('search','Recherche SIA','Chargement des données…',chips+'<p class="mutedtext">Chargement des données SIA…</p>');
+ }else if(category==='freq'){
+  let matches=[];
+  if(query.term){
+   for(const r of frequencyEntries)if(searchFrequency(r,query))matches.push(r);
+   matches.sort((a,b)=>a.freq.localeCompare(b.freq)||a.service.localeCompare(b.service)||a.owner.localeCompare(b.owner,'fr'));
+  }
+  show('search','Recherche SIA',query.term?matches.length+' fréquence(s)':'Rechercher une fréquence',
+    chips+guide+'<div class="freqresults">'+
+    (query.term?(matches.slice(0,100).map(frequencyResult).join('')||'<p class="mutedtext">Aucune fréquence correspondante.</p>'):
+     '<p class="mutedtext">Tape une fréquence, un service (APP, TWR…), un aérodrome ou un secteur.</p>')+'</div>');
+ }else{
+  let found=[];
+  if(query.term)for(let i=0;i<features.length;i++){
+   const f=features[i];
+   if(category!=='all'&&f.properties.layer!==category)continue;
+   if(matchesFeature(f,finder[i],query))found.push(f);
+  }
+  found.sort((a,b)=>{
+   const score=f=>{const p=f.properties,v=norm(p.code),n=norm(p.name);
+    return v===query.term?0:v.startsWith(query.term)?1:n===query.term?2:n.startsWith(query.term)?3:4};
+   return score(a)-score(b);
+  });
+  show('search','Recherche SIA',query.term?found.length+' résultat(s) · '+Math.min(found.length,55)+' affiché(s)':'Nom, code, fréquence',
+   chips+guide+'<div class="results">'+(query.term?
+    (found.slice(0,55).map(row).join('')||'<p class="mutedtext">Aucun résultat.</p>'):
+    '<p class="mutedtext">Exemples : LFBO, NICE, LFR162, 125.030.</p>')+'</div>');
+ }
+ document.querySelectorAll('[data-cat]').forEach(b=>{b.addEventListener('pointerdown',e=>e.preventDefault());b.onclick=()=>{category=b.dataset.cat;results()}});
+ bind();
+}
+
+let qt=0;$('q').addEventListener('focus',()=>{results();refreshSearchViewport()});$('q').addEventListener('input',()=>{clearTimeout(qt);qt=setTimeout(results,90)});$('clear').onclick=()=>{$('q').value='';results();$('q').focus()};
+window.addEventListener('resize',()=>{if(mode==='search')refreshSearchViewport()},{passive:true});
+if(window.visualViewport){window.visualViewport.addEventListener('resize',refreshSearchViewport,{passive:true});window.visualViewport.addEventListener('scroll',refreshSearchViewport,{passive:true});}
+
+function accept(data){
+ features=data.filter(f=>f&&f.geometry&&f.properties&&cfg[f.properties.layer]);
+ finder=[];lookup.clear();frequencyEntries=[];
+ Object.keys(cfg).forEach(k=>groups[k]=[]);
+ for(const f of features){
+  f._b=Array.isArray(f.properties.bbox)?f.properties.bbox:bb(f.geometry);
+  groups[f.properties.layer].push(f);lookup.set(id(f),f);
+  const p=f.properties;
+  const fr=frequencyRows(f);
+  f._freqKeys=[...new Set(fr.map(row=>row.freq))];
+  frequencyEntries.push(...fr);
+  finder.push(norm([p.name,p.label,p.code,p.type,p.frequency,p.service,p.remarks,p.station,p.manager,p.frequency_details&&JSON.stringify(p.frequency_details)].filter(Boolean).join(' ')));
+ }
+ loaded=true;status(features.length.toLocaleString('fr-FR')+' objets · 01/10/2026');
+ $('status').classList.add('ok');redraw();updateDock();
+ if(mode==='search')results();
+ if(mode==='sectors')sectorsPanel();
+ if(mode==='elements')elementsPanel();
+}
+
+async function load(){try{const r=await fetch('./sia-manifest.json',{cache:'no-store'});if(!r.ok)throw Error('manifest inaccessible');const m=await r.json();let fs=[];for(let i=0;i<m.chunks.length;i+=4){const a=await Promise.all(m.chunks.slice(i,i+4).map(async n=>{const r=await fetch('./'+n);if(!r.ok)throw Error(n);return(await r.json()).features}));fs.push(...a.flat());status('SIA '+Math.min(i+4,m.chunks.length)+'/'+m.chunks.length)}accept(fs)}catch(e){status('Données indisponibles');$('hint').textContent='Données SIA indisponibles';notice('Erreur de chargement SIA');console.error(e)}}
+if('serviceWorker' in navigator)navigator.serviceWorker.getRegistrations().then(v=>v.filter(r=>new URL(r.scope).pathname.startsWith('/suivi-air-sol/Voliere/')).forEach(r=>r.unregister())).catch(()=>{});
+if('caches' in window)caches.keys().then(v=>v.filter(k=>k.startsWith('voliere-')).forEach(k=>caches.delete(k))).catch(()=>{});
+window.addEventListener('resize',()=>map.invalidateSize({animate:false}),{passive:true});window.addEventListener('orientationchange',()=>setTimeout(()=>map.invalidateSize({animate:false}),250));
+load();
+})();
+</script></body></html>
