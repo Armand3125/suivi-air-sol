@@ -460,7 +460,7 @@ function imdSetPoint(point){
   icon:L.divIcon({className:'imd-anchor',html:'<div></div>',iconSize:[24,24],iconAnchor:[12,12]})
  }).addTo(imdOverlay);
  imdMarker.on('dragend',()=>{imdSetPoint(imdMarker.getLatLng());imdPanel()});
- imdPanel();
+ updateDock();imdPanel();
 }
 function imdChooseOnMap(){
  imdChoosing=true;
@@ -589,9 +589,9 @@ function imdCalculate(){
  imdResult={...collected,channelsMap:new Map(freqs.map(f=>[f.khz,f])),
   alerts:[...alerts.values()].sort(order),overlaps:[...overlaps.values()].sort((a,b)=>a.near.delta-b.near.delta||order(a,b)),
   nearest:[...nearest.values()].sort(order),targetCount,overlapCount,totalInBand};
- imdPanel();
+ updateDock();imdPanel();
 }
-function imdResultItem(v){
+function imdResultItem(v,comparison='target'){
  const math=v.op==='2'?'2 × '+imdFormat(v.formula[0])+' − '+imdFormat(v.formula[2]):
    imdFormat(v.formula[0])+' + '+imdFormat(v.formula[1])+' − '+imdFormat(v.formula[2]);
  const sourceOf=k=>{
@@ -601,7 +601,7 @@ function imdResultItem(v){
   return imdFormat(k)+' : '+one.source.name+' ('+one.service+')';
  };
  const origins=[...new Set(v.formula)].map(sourceOf).filter(Boolean).join(' · ');
- return '<div class="imd-hit"><span class="imd-deviation">Δ '+(v.near?v.near.delta.toFixed(1):(v.delta).toFixed(1))+' kHz</span>'+
+ return '<div class="imd-hit"><span class="imd-deviation">Δ '+(comparison==='channel'&&v.near?v.near.delta:v.delta).toFixed(1)+' kHz</span>'+
   '<div class="imd-product">'+imdFormat(v.khz)+' MHz</div>'+
   '<div class="imd-equation">'+math+' MHz · IMD3 '+(v.op==='2'?'2 tons':'3 tons')+'</div>'+
   (v.near?'<div class="imd-origins">Canal SIA proche : '+imdFormat(v.near.khz)+' MHz</div>':'')+
@@ -622,7 +622,7 @@ function imdPanel(){
  let display='';
  if(r){
   const arr=r.alerts.slice(0,35),occupied=r.overlaps.slice(0,35);
-  const used=arr.length?arr.map(imdResultItem).join(''):'<p class="imd-note">Aucun produit dans la tolérance de la fréquence ciblée.</p>';
+  const used=arr.length?arr.map(v=>imdResultItem(v,'target')).join(''):'<p class="imd-note">Aucun produit dans la tolérance de la fréquence ciblée.</p>';
   display='<div class="imd-head"><strong>Analyse · '+r.carriers.length+' fréquences</strong><span>'+r.totalInBand.toLocaleString('fr-FR')+' produits en bande</span></div>'+
    (r.truncated?'<div class="imd-flag">Limite de calcul : 95 / '+r.available+' fréquences les plus proches. Résultat partiel.</div>':'')+
    (r.targetCount?'<div class="imd-flag">'+r.targetCount.toLocaleString('fr-FR')+' combinaisons proches de '+imdTarget.toFixed(3)+' MHz</div>':
@@ -630,7 +630,7 @@ function imdPanel(){
    '<div class="imd-head"><strong>Vers '+imdTarget.toFixed(3)+' MHz</strong><span>± '+imdTolerance.toString().replace('.',',')+' kHz</span></div>'+
    used+(r.targetCount>35?'<p class="imd-note">35 premières combinaisons affichées.</p>':'')+
    '<div class="imd-head"><strong>Sur fréquences SIA présentes</strong><span>'+r.overlapCount.toLocaleString('fr-FR')+' résultats</span></div>'+
-   (occupied.length?occupied.map(imdResultItem).join(''):'<p class="imd-note">Aucun recoupement calculé.</p>')+
+   (occupied.length?occupied.map(v=>imdResultItem(v,'channel')).join(''):'<p class="imd-note">Aucun recoupement calculé.</p>')+
    (r.overlapCount>35?'<p class="imd-note">35 premières combinaisons affichées.</p>':'')+
    sources;
  }
