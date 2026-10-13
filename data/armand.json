@@ -104,6 +104,15 @@
       "done": "Évolution de l'outil pour la réalisation de petit plan de masse et câblages (24V/-48V/230V/Supervision/Coax",
       "future": "Compléter la bibliothèque des éléments",
       "effort": "light"
+    },
+    {
+      "id": "id_nccw0c7b",
+      "category": "Activité Labo",
+      "customCategory": "",
+      "title": "Decouplage entre antenne",
+      "done": "Réflexion sur la création d'un petit outil pour le découplage entre deux antennes -> application direct pour l'archi cohabitation Radar.",
+      "future": "",
+      "effort": "light"
     }
   ]
 }
