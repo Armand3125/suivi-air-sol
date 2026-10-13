@@ -2,8 +2,8 @@
   "id": "./",
   "name": "Volière — Atlas SIA",
   "short_name": "Volière",
-  "description": "Volière V2R8 — Atlas SIA, profils à vue et intermodulation VHF",
-  "start_url": "./index-v2r8.html?v=20261013e",
+  "description": "Volière V2R9 — Atlas SIA, profil et intermodulation 108–137 MHz",
+  "start_url": "./index-v2r9.html?v=20261013f",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
@@ -11,7 +11,7 @@
   "theme_color": "#082c38",
   "icons": [
     {
-      "src": "./icon.svg?v=V2R8",
+      "src": "./icon.svg?v=V2R9",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
