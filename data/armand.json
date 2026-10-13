@@ -104,6 +104,15 @@
       "done": "Réflexion sur la création d'un petit outil pour le découplage entre deux antennes -> application direct pour l'archi cohabitation Radar.",
       "future": "",
       "effort": "light"
+    },
+    {
+      "id": "id_ywvscbrx",
+      "category": "Intermodulation",
+      "customCategory": "",
+      "title": "Lognes",
+      "done": "FFT sur Lognes, écoute de l'ATIS sur la freq SOL.\nÉtude de l'architecture\nDéplacement le 07/10 pour identification du problème\nUne intermodulation sur la détresse\nDeux recepteurs défaillants.",
+      "future": "CR de déplacement à finaliser\nDemander le changement de fréquence de l'ATIS\nÉchange standard des 2 recepteurs et vérification du relais à faire.",
+      "effort": "heavy"
     }
   ]
 }
