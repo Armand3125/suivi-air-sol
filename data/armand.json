@@ -56,9 +56,9 @@
       "category": "AAV",
       "customCategory": "",
       "title": "SPM",
-      "done": "Vérification de la demande d’équipement.",
+      "done": "Vérification de la demande d’équipement. Devis de création des câbles.",
       "future": "Poursuite du suivi du sujet.",
-      "effort": "light"
+      "effort": "heavy"
     },
     {
       "id": "armand-s07",
