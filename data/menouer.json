@@ -493,15 +493,6 @@
       "effort": "heavy"
     },
     {
-      "id": "menouer-20261013-poitiers",
-      "category": "AAV",
-      "customCategory": "",
-      "title": "Poitiers – architecture radio",
-      "done": "Des dysfonctionnements ont été détectés et une nouvelle architecture a été élaborée.",
-      "future": "Validation de la nouvelle architecture après les visites techniques à Poitiers, Châteauroux et La Châtre.",
-      "effort": "light"
-    },
-    {
       "id": "menouer-20261013-deplacement-02",
       "category": "Autre",
       "customCategory": "Déplacements effectués",
