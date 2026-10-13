@@ -7,66 +7,66 @@
   "remark": "NA",
   "activities": [
     {
-      "id": "menouer-20261013-mco-01",
+      "id": "menouer-20261013-mco-20",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "TANVILLE AA",
-      "done": "L’installation des deux couronnes d’antennes UHF, ainsi que le diagnostic préventif et le contrôle de conformité, sont terminés. Nous avons reçu le rapport ainsi que les mesures d’antenne et de découplage. La proposition tarifaire pour le balisage et la correction des points du rapport a bien été reçue. Le bon de commande a été transmis à Eiffage. L'intervention de remplacement des balises et les travaux correctifs ont été effectués. Le rapport d'intervention a été reçu le 06/07/2026.",
-      "future": "",
+      "title": "AVIGNON",
+      "done": "Diagnostic préventif et contrôle de conformité réalisés en S28 ; rapport reçu.",
+      "future": "Attente de la proposition tarifaire Eiffage pour les correctifs.",
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-02",
+      "id": "menouer-20261013-mco-12",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "LE BOURGET CERD",
-      "done": "Antenne directive d’expérimentation installée ; rapport reçu. Essais validés par le SNA. Bon de commande des travaux définitifs validé et transmis à Eiffage.",
-      "future": "Nous attendons le retour d’Eiffage sur la date d’intervention des travaux définitifs.",
+      "title": "BÂLE -Mulhouse CERD",
+      "done": "Organisation validée par le SNA (Fabien Barthélémy) : réception de la balise restante puis pose par le SNA en autonomie.",
+      "future": "Eiffage doit envoyer la balise restante au SNA pour installation en autonomie, et transmettre les rapports d’intervention.",
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-03",
+      "id": "menouer-20261013-mco-31",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "GRAND BALLON AA",
-      "done": "Les travaux de peinture ont été réalisés et le rapport a été reçu.",
-      "future": "",
+      "title": "BREST (CED)",
+      "done": "Diagnostic préventif et contrôle de conformité réalisés ; rapport reçu le 26/08/2026.",
+      "future": "Attente de la proposition tarifaire Eiffage pour les correctifs.",
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-04",
+      "id": "menouer-20261013-mco-32",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "COL DEL TAP CED / CRD",
-      "done": "• 04/06/2025 : déplacement pour le suivi du chantier Eiffage et le remplacement des ampoules de balisage.\n• 16/10/2025 : déplacement pour le suivi du chantier Eiffage.\n• 24–25/08/2026 : mise en sécurité du pylône d’émission (contrôle de la boulonnerie, remplacement des boulons manquants ou endommagés, resserrage et refixation de la diagonale tombée).\n• 30/09/2026 : Eiffage évoque une intervention en S43. Référence : 26/LFBO/0009_ER-01.",
-      "future": "Réparer la membrure endommagée et remplacer/réfectionner la plateforme cassée avec Circet Pylône. Intervention estimée en S43 (2 jours), à confirmer. ICP prévue le 16/10/2026 avec le SNA, Eiffage, Circet et le grutier. Attente du retour SNA et de la confirmation de tous les intervenants. Référence : 26/LFBO/0009_ER-01.",
-      "effort": "heavy"
-    },
-    {
-      "id": "menouer-20261013-mco-05",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "Mérignac CRS",
-      "done": "Diagnostic préventif et contrôle de conformité réalisés ; rapport reçu.",
-      "future": "Travaux correctifs en cours ; achèvement prévu le 09/10/2026 (selon le point transmis).",
+      "title": "Brest (CRD)",
+      "done": "Diagnostic préventif et contrôle de conformité réalisés ; rapport reçu le 26/08/2026.",
+      "future": "Attente de la proposition tarifaire Eiffage pour les correctifs.",
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-06",
+      "id": "menouer-20261013-mco-30",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "Saint-Saulge AA",
-      "done": "Diagnostic préventif et contrôle de conformité réalisés ; rapport reçu. Bon de commande des correctifs reçu par Eiffage.",
-      "future": "Attente de la date d’intervention Eiffage pour lancer l’OS.",
+      "title": "Brest Quimerc’h",
+      "done": "",
+      "future": "Attente du retour de TDF.",
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-07",
+      "id": "menouer-20261013-mco-15",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "DTI TOULOUSE",
-      "done": "L’intervention pour le remplacement de la plateforme de découplage a été réalisée le 18/12/2025 et le rapport a été reçu le 23/12/2025. Le diagnostic préventif, le contrôle de conformité et les travaux de peinture ont été réalisés, et le rapport a été reçu.",
-      "future": "",
+      "title": "CDG Nord (CED+CRD)",
+      "done": "Diagnostic préventif et contrôle de conformité réalisés ; rapport reçu. Proposition tarifaire reçue et bon de commande transmis à Eiffage.",
+      "future": "Interventions programmées de S38 à S41 ; visite de fin de chantier prévue le 13/10/2026 (selon le suivi transmis).",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-51",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "CDG Nord CRD Pylône 4",
+      "done": "Corrosion perforante d’une membrure du pylône 4 ; trou constaté lors de l’inspection Eiffage. Nouvelle visite technique par caméra endoscopique le 16/09/2026 : corrosion à la soudure d’une diagonale, sans propagation observée sur environ 5 m au-dessus et au-dessous du défaut. RETIS préconise le remplacement du tronçon intermédiaire, d’environ 6 m, en raison de sa fragilisation. Sollicitation du SNA envoyée à Gwenn Millocheau le 30/09/2026.",
+      "future": "Remplacer rapidement le tronçon intermédiaire d’environ 6 m (trois membrures et diagonales) selon la préconisation RETIS. Intervention de 2 jours avec grue, dépose/remontage des câbles, chemin de câbles, rail SÖLL et tronçon supérieur. Attente de la proposition tarifaire Eiffage et du retour de la SNA (Gwenn Millocheau, sollicité le 30/09/2026) pour planification.",
       "effort": "light"
     },
     {
@@ -88,12 +88,75 @@
       "effort": "light"
     },
     {
+      "id": "menouer-20261013-mco-04",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "COL DEL TAP CED / CRD",
+      "done": "• 04/06/2025 : déplacement pour le suivi du chantier Eiffage et le remplacement des ampoules de balisage.\n• 16/10/2025 : déplacement pour le suivi du chantier Eiffage.\n• 24–25/08/2026 : mise en sécurité du pylône d’émission (contrôle de la boulonnerie, remplacement des boulons manquants ou endommagés, resserrage et refixation de la diagonale tombée).\n• 30/09/2026 : Eiffage évoque une intervention en S43. Référence : 26/LFBO/0009_ER-01.",
+      "future": "Réparer la membrure endommagée et remplacer/réfectionner la plateforme cassée avec Circet Pylône. Intervention estimée en S43 (2 jours), à confirmer. ICP prévue le 16/10/2026 avec le SNA, Eiffage, Circet et le grutier. Attente du retour SNA et de la confirmation de tous les intervenants. Référence : 26/LFBO/0009_ER-01.",
+      "effort": "heavy"
+    },
+    {
+      "id": "menouer-20261013-mco-40",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "CRNA Nord (Bâtiment 704)",
+      "done": "Panne de balisage signalée au bâtiment 704. Intervention réalisée les 6 et 7 octobre 2026.",
+      "future": "",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-39",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "CRNA Nord (Bâtiment 1600)",
+      "done": "Panne de balisage signalée au bâtiment 1600. Intervention réalisée les 6 et 7 octobre 2026.",
+      "future": "",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-33",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "DIEMOZ CED",
+      "done": "Diagnostic préventif et contrôle de conformité réalisés en S28 ; rapport reçu.",
+      "future": "Attente de la proposition tarifaire Eiffage pour les correctifs.",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-34",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "DIEPPE",
+      "done": "Diagnostic préventif et contrôle de conformité réalisés le 25/08/2026 ; rapport reçu. Proposition tarifaire des correctifs reçue.",
+      "future": "Attente de la date d’intervention Eiffage.",
+      "effort": "light"
+    },
+    {
       "id": "menouer-20261013-mco-10",
       "category": "MCO Pylône",
       "customCategory": "",
       "title": "DIJON MONT AFRIQUE AA",
       "done": "Les travaux prévus, ainsi que la peinture des deux réflecteurs, ont été réalisés en semaine 47, et le rapport d’intervention a été reçu.",
       "future": "Les travaux prévus, ainsi que la peinture des deux réflecteurs, ont été réalisés en semaine 47, et le rapport d’intervention a été reçu.",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-07",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "DTI TOULOUSE",
+      "done": "L’intervention pour le remplacement de la plateforme de découplage a été réalisée le 18/12/2025 et le rapport a été reçu le 23/12/2025. Le diagnostic préventif, le contrôle de conformité et les travaux de peinture ont été réalisés, et le rapport a été reçu.",
+      "future": "",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-03",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "GRAND BALLON AA",
+      "done": "Les travaux de peinture ont été réalisés et le rapport a été reçu.",
+      "future": "",
       "effort": "light"
     },
     {
@@ -106,84 +169,39 @@
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-12",
+      "id": "menouer-20261013-mco-38",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "BÂLE -Mulhouse CERD",
-      "done": "Organisation validée par le SNA (Fabien Barthélémy) : réception de la balise restante puis pose par le SNA en autonomie.",
-      "future": "Eiffage doit envoyer la balise restante au SNA pour installation en autonomie, et transmettre les rapports d’intervention.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-13",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "REDON",
-      "done": "Proposition tarifaire des travaux correctifs reçue et bon de commande transmis à Eiffage. Intervention initialement fixée au 07/09/2026, non réalisée.",
-      "future": "Intervention du 07/09/2026 non réalisée. À replanifier avec le SNA et M. Pascal DAVID.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-14",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "STE BAUME",
-      "done": "Intervention terminée.",
-      "future": "Attente du rapport d’intervention Eiffage.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-15",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "CDG Nord (CED+CRD)",
-      "done": "Diagnostic préventif et contrôle de conformité réalisés ; rapport reçu. Proposition tarifaire reçue et bon de commande transmis à Eiffage.",
-      "future": "Interventions programmées de S38 à S41 ; visite de fin de chantier prévue le 13/10/2026 (selon le suivi transmis).",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-16",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "MENDE NASBINALS",
-      "done": "Supports remplacés ; rapport reçu le 10/04/2026. Sursis de livraison accordé pour BC 13/25, poste 2 (nouvelle échéance contractuelle : 28/08/2026). Troisième câble remplacé le 04/08/2026.",
-      "future": "Attente du rapport Eiffage sur le remplacement du troisième câble du 04/08/2026.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-17",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "Réaltor Marseille",
-      "done": "Rapport reçu le 08/12/2025 de la part d’Eiffage. L’intervention pour le remplacement des balises et les diagnostics a été réalisée le 20 novembre.",
+      "title": "La roche/Yon",
+      "done": "• 10/06/2026 : déplacement à La Roche-sur-Yon dans le cadre de l'installation de l'antenne directive.\n• 28/09/2026 : déplacement pour assister à l'installation de cette antenne.\n• Installation de l'antenne directive sur la station réalisée.",
       "future": "",
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-18",
+      "id": "menouer-20261013-mco-02",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "TROYES",
-      "done": "Le démontage des 3 anciens pylônes a été réalisé le 30/07/2025 (Marché 2023.002.0000425.00.00 postes 5 & 6 lancé le 30/07/2025).",
-      "future": "",
+      "title": "LE BOURGET CERD",
+      "done": "Antenne directive d’expérimentation installée ; rapport reçu. Essais validés par le SNA. Bon de commande des travaux définitifs validé et transmis à Eiffage.",
+      "future": "Nous attendons le retour d’Eiffage sur la date d’intervention des travaux définitifs.",
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-19",
+      "id": "menouer-20261013-mco-50",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "PIC DU MIDI",
-      "done": "Une prise et un kit d’étanchéité ont été fournis par Eiffage au SNA Sud pour remplacer ceux défectueux.",
-      "future": "",
+      "title": "LE HAILLAN",
+      "done": "Bon de commande du diagnostic préventif et du contrôle de conformité validé et transmis à Eiffage.\n• 02/04/2025 : déplacement à Bordeaux pour le suivi de travaux au CES du Haillan.",
+      "future": "Attente de la date d’intervention Eiffage.",
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-20",
+      "id": "menouer-20261013-mco-29",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "AVIGNON",
-      "done": "Diagnostic préventif et contrôle de conformité réalisés en S28 ; rapport reçu.",
-      "future": "Attente de la proposition tarifaire Eiffage pour les correctifs.",
+      "title": "Limoges Cognac-la-Forêt",
+      "done": "L’intervention visant à identifier le problème sur l’une des antennes a été réalisée et le rapport a été reçu le 10/04/2026. Le dépannage du coaxial du pylône existant sur la station de Limoges Cognac-la-Forêt a été réalisé le 22/07/2026. Le rapport d'intervention a été reçu le 03/08/2026.\n• 02/02/2026 : déplacement relatif à l'intervention de dépannage sur l'une des antennes du site.",
+      "future": "",
       "effort": "light"
     },
     {
@@ -205,10 +223,37 @@
       "effort": "light"
     },
     {
+      "id": "menouer-20261013-mco-16",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "MENDE NASBINALS",
+      "done": "Supports remplacés ; rapport reçu le 10/04/2026. Sursis de livraison accordé pour BC 13/25, poste 2 (nouvelle échéance contractuelle : 28/08/2026). Troisième câble remplacé le 04/08/2026.",
+      "future": "Attente du rapport Eiffage sur le remplacement du troisième câble du 04/08/2026.",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-05",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "Mérignac CRS",
+      "done": "Diagnostic préventif et contrôle de conformité réalisés ; rapport reçu.",
+      "future": "Travaux correctifs en cours ; achèvement prévu le 09/10/2026 (selon le point transmis).",
+      "effort": "light"
+    },
+    {
       "id": "menouer-20261013-mco-23",
       "category": "MCO Pylône",
       "customCategory": "",
       "title": "MONT-LEUZE CED",
+      "done": "Diagnostic préventif et contrôle de conformité réalisés ; rapport reçu le 29/05/2026. Bon de commande des travaux correctifs reçu par Eiffage.",
+      "future": "Attente de la date d’intervention Eiffage pour lancer l’OS.",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-25",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "MONT-LEUZE CRD",
       "done": "Diagnostic préventif et contrôle de conformité réalisés ; rapport reçu le 29/05/2026. Bon de commande des travaux correctifs reçu par Eiffage.",
       "future": "Attente de la date d’intervention Eiffage pour lancer l’OS.",
       "effort": "light"
@@ -223,12 +268,21 @@
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-25",
+      "id": "menouer-20261013-mco-35",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "MONT-LEUZE CRD",
-      "done": "Diagnostic préventif et contrôle de conformité réalisés ; rapport reçu le 29/05/2026. Bon de commande des travaux correctifs reçu par Eiffage.",
-      "future": "Attente de la date d’intervention Eiffage pour lancer l’OS.",
+      "title": "MONTELIMAR (Site VOR)",
+      "done": "Le diagnostic préventif et le contrôle de conformité ont été réalisés en semaine 28, et le rapport d’intervention a bien été reçu.",
+      "future": "",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-49",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "NANTES",
+      "done": "Bon de commande du diagnostic préventif et du contrôle de conformité validé et transmis à Eiffage.",
+      "future": "Attente de la date d’intervention Eiffage.",
       "effort": "light"
     },
     {
@@ -259,114 +313,6 @@
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-29",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "Limoges Cognac-la-Forêt",
-      "done": "L’intervention visant à identifier le problème sur l’une des antennes a été réalisée et le rapport a été reçu le 10/04/2026. Le dépannage du coaxial du pylône existant sur la station de Limoges Cognac-la-Forêt a été réalisé le 22/07/2026. Le rapport d'intervention a été reçu le 03/08/2026.\n• 02/02/2026 : déplacement relatif à l'intervention de dépannage sur l'une des antennes du site.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-30",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "Brest Quimerc’h",
-      "done": "",
-      "future": "Attente du retour de TDF.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-31",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "BREST (CED)",
-      "done": "Diagnostic préventif et contrôle de conformité réalisés ; rapport reçu le 26/08/2026.",
-      "future": "Attente de la proposition tarifaire Eiffage pour les correctifs.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-32",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "Brest (CRD)",
-      "done": "Diagnostic préventif et contrôle de conformité réalisés ; rapport reçu le 26/08/2026.",
-      "future": "Attente de la proposition tarifaire Eiffage pour les correctifs.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-33",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "DIEMOZ CED",
-      "done": "Diagnostic préventif et contrôle de conformité réalisés en S28 ; rapport reçu.",
-      "future": "Attente de la proposition tarifaire Eiffage pour les correctifs.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-34",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "DIEPPE",
-      "done": "Diagnostic préventif et contrôle de conformité réalisés le 25/08/2026 ; rapport reçu. Proposition tarifaire des correctifs reçue.",
-      "future": "Attente de la date d’intervention Eiffage.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-35",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "MONTELIMAR (Site VOR)",
-      "done": "Le diagnostic préventif et le contrôle de conformité ont été réalisés en semaine 28, et le rapport d’intervention a bien été reçu.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-36",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "PRUGNY",
-      "done": "Bon de commande MCO pylône reçu par Eiffage. Expertise DAPA du mât tactique LVJT 36-120 endommagé par les vents violents.",
-      "future": "Date d’intervention Eiffage à confirmer pour lancer l’OS. DAPA propose de remplacer les pièces abîmées, cassées ou pliées du mât tactique LVJT 36-120.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-37",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "St-Quentin Fallavier (CRD)",
-      "done": "Diagnostic préventif et contrôle de conformité réalisés en S28 ; rapport reçu.",
-      "future": "Attente de la proposition tarifaire Eiffage pour les correctifs.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-38",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "La roche/Yon",
-      "done": "• 10/06/2026 : déplacement à La Roche-sur-Yon dans le cadre de l'installation de l'antenne directive.\n• 28/09/2026 : déplacement pour assister à l'installation de cette antenne.\n• Installation de l'antenne directive sur la station réalisée.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-39",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "CRNA Nord (Bâtiment 1600)",
-      "done": "Panne de balisage signalée au bâtiment 1600. Intervention réalisée les 6 et 7 octobre 2026.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-40",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "CRNA Nord (Bâtiment 704)",
-      "done": "Panne de balisage signalée au bâtiment 704. Intervention réalisée les 6 et 7 octobre 2026.",
-      "future": "",
-      "effort": "light"
-    },
-    {
       "id": "menouer-20261013-mco-41",
       "category": "MCO Pylône",
       "customCategory": "",
@@ -385,19 +331,55 @@
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-43",
+      "id": "menouer-20261013-mco-19",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "St Quentin Ribemont",
-      "done": "Bon de commande du diagnostic préventif et du contrôle de conformité validé et transmis à Eiffage.",
-      "future": "Attente de la date d’intervention Eiffage.",
+      "title": "PIC DU MIDI",
+      "done": "Une prise et un kit d’étanchéité ont été fournis par Eiffage au SNA Sud pour remplacer ceux défectueux.",
+      "future": "",
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-44",
+      "id": "menouer-20261013-mco-36",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "St Jean-d'Illac CRP",
+      "title": "PRUGNY",
+      "done": "Bon de commande MCO pylône reçu par Eiffage. Expertise DAPA du mât tactique LVJT 36-120 endommagé par les vents violents.",
+      "future": "Date d’intervention Eiffage à confirmer pour lancer l’OS. DAPA propose de remplacer les pièces abîmées, cassées ou pliées du mât tactique LVJT 36-120.",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-17",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "Réaltor Marseille",
+      "done": "Rapport reçu le 08/12/2025 de la part d’Eiffage. L’intervention pour le remplacement des balises et les diagnostics a été réalisée le 20 novembre.",
+      "future": "",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-13",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "REDON",
+      "done": "Proposition tarifaire des travaux correctifs reçue et bon de commande transmis à Eiffage. Intervention initialement fixée au 07/09/2026, non réalisée.",
+      "future": "Intervention du 07/09/2026 non réalisée. À replanifier avec le SNA et M. Pascal DAVID.",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-06",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "Saint-Saulge AA",
+      "done": "Diagnostic préventif et contrôle de conformité réalisés ; rapport reçu. Bon de commande des correctifs reçu par Eiffage.",
+      "future": "Attente de la date d’intervention Eiffage pour lancer l’OS.",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-46",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "SARLAT",
       "done": "Bon de commande du diagnostic préventif et du contrôle de conformité validé et transmis à Eiffage.",
       "future": "Attente de la date d’intervention Eiffage.",
       "effort": "light"
@@ -412,12 +394,48 @@
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-46",
+      "id": "menouer-20261013-mco-44",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "SARLAT",
+      "title": "St Jean-d'Illac CRP",
       "done": "Bon de commande du diagnostic préventif et du contrôle de conformité validé et transmis à Eiffage.",
       "future": "Attente de la date d’intervention Eiffage.",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-43",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "St Quentin Ribemont",
+      "done": "Bon de commande du diagnostic préventif et du contrôle de conformité validé et transmis à Eiffage.",
+      "future": "Attente de la date d’intervention Eiffage.",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-37",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "St-Quentin Fallavier (CRD)",
+      "done": "Diagnostic préventif et contrôle de conformité réalisés en S28 ; rapport reçu.",
+      "future": "Attente de la proposition tarifaire Eiffage pour les correctifs.",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-14",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "STE BAUME",
+      "done": "Intervention terminée.",
+      "future": "Attente du rapport d’intervention Eiffage.",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-mco-01",
+      "category": "MCO Pylône",
+      "customCategory": "",
+      "title": "TANVILLE AA",
+      "done": "L’installation des deux couronnes d’antennes UHF, ainsi que le diagnostic préventif et le contrôle de conformité, sont terminés. Nous avons reçu le rapport ainsi que les mesures d’antenne et de découplage. La proposition tarifaire pour le balisage et la correction des points du rapport a bien été reçue. Le bon de commande a été transmis à Eiffage. L'intervention de remplacement des balises et les travaux correctifs ont été effectués. Le rapport d'intervention a été reçu le 06/07/2026.",
+      "future": "",
       "effort": "light"
     },
     {
@@ -439,38 +457,11 @@
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-mco-49",
+      "id": "menouer-20261013-mco-18",
       "category": "MCO Pylône",
       "customCategory": "",
-      "title": "NANTES",
-      "done": "Bon de commande du diagnostic préventif et du contrôle de conformité validé et transmis à Eiffage.",
-      "future": "Attente de la date d’intervention Eiffage.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-50",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "LE HAILLAN",
-      "done": "Bon de commande du diagnostic préventif et du contrôle de conformité validé et transmis à Eiffage.\n• 02/04/2025 : déplacement à Bordeaux pour le suivi de travaux au CES du Haillan.",
-      "future": "Attente de la date d’intervention Eiffage.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-mco-51",
-      "category": "MCO Pylône",
-      "customCategory": "",
-      "title": "CDG Nord CRD Pylône 4",
-      "done": "Corrosion perforante d’une membrure du pylône 4 ; trou constaté lors de l’inspection Eiffage. Nouvelle visite technique par caméra endoscopique le 16/09/2026 : corrosion à la soudure d’une diagonale, sans propagation observée sur environ 5 m au-dessus et au-dessous du défaut. RETIS préconise le remplacement du tronçon intermédiaire, d’environ 6 m, en raison de sa fragilisation. Sollicitation du SNA envoyée à Gwenn Millocheau le 30/09/2026.",
-      "future": "Remplacer rapidement le tronçon intermédiaire d’environ 6 m (trois membrures et diagonales) selon la préconisation RETIS. Intervention de 2 jours avec grue, dépose/remontage des câbles, chemin de câbles, rail SÖLL et tronçon supérieur. Attente de la proposition tarifaire Eiffage et du retour de la SNA (Gwenn Millocheau, sollicité le 30/09/2026) pour planification.",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-nouveau-lyon",
-      "category": "Autre",
-      "customCategory": "Nouveaux pylônes",
-      "title": "Lyon CERD – nouveau pylône",
-      "done": "• 05/08/2025 : visite d'étude à Lyon pour l'implantation du pylône destiné à accueillir deux antennes UHF, l'installation des baies UHF dans le local technique, le câblage et la tranchée.\n• 04/12/2025 : déplacement au CERD de Lyon pour le suivi de l'installation du nouveau pylône.\n• 07–10/07/2026 : déplacement pour assister au levage du pylône et aux mesures de qualification radio.\n• Levage effectué avec succès ; mesures de qualification radio et recette réalisées.\n• 12/08/2026 : DOE réceptionné et transmis au SNA le même jour.",
+      "title": "TROYES",
+      "done": "Le démontage des 3 anciens pylônes a été réalisé le 30/07/2025 (Marché 2023.002.0000425.00.00 postes 5 & 6 lancé le 30/07/2025).",
       "future": "",
       "effort": "light"
     },
@@ -481,6 +472,15 @@
       "title": "Limoges – Cognac-la-Forêt – nouveau pylône",
       "done": "• 02/02/2026 : déplacement à Limoges – Cognac-la-Forêt pour assister à l'ouverture du chantier du nouveau pylône.",
       "future": "Fabrication des antennes : prévue en S44 Fabrication du pylône : prévue en S46 Recettes usine du pylône : S47 Transport, assemblage du pylône, pose des antennes et des coaxiaux au sol : entre S48 et S50 Levage du pylône : S50 Finition des installations, raccordements des équipements et vérifications du pylône : entre S51 et S52. Contrôle de conformité par un organisme agréé : entre S51 et S52, avec l’APAVE comme organisme de contrôle. Mesures de qualification radio et de découplage : S53 Remise des dossiers contractuels : S01 2027 Dépose du pylône et des massifs d’ancrage de l’ancienne installation : entre S05 et S08 2027 Recette finale : S10 2027",
+      "effort": "light"
+    },
+    {
+      "id": "menouer-20261013-nouveau-lyon",
+      "category": "Autre",
+      "customCategory": "Nouveaux pylônes",
+      "title": "Lyon CERD – nouveau pylône",
+      "done": "• 05/08/2025 : visite d'étude à Lyon pour l'implantation du pylône destiné à accueillir deux antennes UHF, l'installation des baies UHF dans le local technique, le câblage et la tranchée.\n• 04/12/2025 : déplacement au CERD de Lyon pour le suivi de l'installation du nouveau pylône.\n• 07–10/07/2026 : déplacement pour assister au levage du pylône et aux mesures de qualification radio.\n• Levage effectué avec succès ; mesures de qualification radio et recette réalisées.\n• 12/08/2026 : DOE réceptionné et transmis au SNA le même jour.",
+      "future": "",
       "effort": "light"
     },
     {
