@@ -47,7 +47,7 @@
       "category": "Intermodulation",
       "customCategory": "",
       "title": "Bastia",
-      "done": "Suivi du sujet. Aide aux réglages des cavités Mont-Leuze à confirmer.",
+      "done": "Détection d'intermodulation, modification du plan de fréquence de MLE",
       "future": "",
       "effort": "light"
     },
