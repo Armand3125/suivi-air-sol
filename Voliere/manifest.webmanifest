@@ -2,8 +2,8 @@
   "id": "./",
   "name": "Volière — Atlas SIA",
   "short_name": "Volière",
-  "description": "Volière V2R6 — Atlas SIA et profils à vue",
-  "start_url": "./index-v2r6.html?v=20261013c",
+  "description": "Volière V2R7 — Atlas SIA et profils à vue",
+  "start_url": "./index-v2r7.html?v=20261013d",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
@@ -11,7 +11,7 @@
   "theme_color": "#082c38",
   "icons": [
     {
-      "src": "./icon.svg?v=V2R6",
+      "src": "./icon.svg?v=V2R7",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
