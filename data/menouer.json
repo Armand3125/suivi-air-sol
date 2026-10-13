@@ -67,7 +67,7 @@
       "title": "CDG Nord CRD Pylône 4",
       "done": "Corrosion perforante d’une membrure du pylône 4 ; trou constaté lors de l’inspection Eiffage. Nouvelle visite technique par caméra endoscopique le 16/09/2026 : corrosion à la soudure d’une diagonale, sans propagation observée sur environ 5 m au-dessus et au-dessous du défaut. RETIS préconise le remplacement du tronçon intermédiaire, d’environ 6 m, en raison de sa fragilisation. Sollicitation du SNA envoyée à Gwenn Millocheau le 30/09/2026.",
       "future": "Remplacer rapidement le tronçon intermédiaire d’environ 6 m (trois membrures et diagonales) selon la préconisation RETIS. Intervention de 2 jours avec grue, dépose/remontage des câbles, chemin de câbles, rail SÖLL et tronçon supérieur. Attente de la proposition tarifaire Eiffage et du retour de la SNA (Gwenn Millocheau, sollicité le 30/09/2026) pour planification.",
-      "effort": "light"
+      "effort": "heavy"
     },
     {
       "id": "menouer-20261013-mco-08",
