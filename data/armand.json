@@ -92,7 +92,7 @@
       "category": "Activité Labo",
       "customCategory": "",
       "title": "Biome",
-      "done": "Évolution de l'outil pour qu'il intègre les AAV",
+      "done": "Évolution de l'outil pour qu'il intègre les AAV, les fréquences du SIA, les fréquences de Ref_Freq, etc...",
       "future": "",
       "effort": "heavy"
     }
