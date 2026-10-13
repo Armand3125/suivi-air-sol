@@ -95,6 +95,15 @@
       "done": "Évolution de l'outil pour qu'il intègre les AAV, les fréquences du SIA, les fréquences de Ref_Freq, etc...",
       "future": "Évolution de l'outil?",
       "effort": "heavy"
+    },
+    {
+      "id": "id_u5w9bf5l",
+      "category": "Activité Labo",
+      "customCategory": "",
+      "title": "Taiga",
+      "done": "Évolution de l'outil pour la réalisation de petit plan de masse et câblages (24V/-48V/230V/Supervision/Coax",
+      "future": "Compléter la bibliothèque des éléments",
+      "effort": "light"
     }
   ]
 }
