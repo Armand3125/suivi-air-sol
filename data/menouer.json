@@ -328,7 +328,7 @@
       "title": "PRUGNY",
       "done": "Bon de commande MCO pylône reçu par Eiffage. Expertise DAPA du mât tactique LVJT 36-120 endommagé par les vents violents.",
       "future": "Date d’intervention Eiffage à confirmer pour lancer l’OS. DAPA propose de remplacer les pièces abîmées, cassées ou pliées du mât tactique LVJT 36-120.",
-      "effort": "heavy"
+      "effort": "light"
     },
     {
       "id": "menouer-20261013-mco-37",
