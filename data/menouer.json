@@ -38,7 +38,7 @@
       "category": "MCO Pylône",
       "customCategory": "",
       "title": "COL DEL TAP CED / CRD",
-      "done": "Mise en sécurité du pylône d’émission les 24 et 25 août 2026 : contrôle de la boulonnerie, remplacement des boulons manquants ou endommagés, resserrage et refixation de la diagonale tombée. Eiffage a évoqué S43 dans son mail du 30/09/2026. Référence : 26/LFBO/0009_ER-01.",
+      "done": "• 04/06/2025 : déplacement pour le suivi du chantier Eiffage et le remplacement des ampoules de balisage.\n• 16/10/2025 : déplacement pour le suivi du chantier Eiffage.\n• 24–25/08/2026 : mise en sécurité du pylône d’émission (contrôle de la boulonnerie, remplacement des boulons manquants ou endommagés, resserrage et refixation de la diagonale tombée).\n• 30/09/2026 : Eiffage évoque une intervention en S43. Référence : 26/LFBO/0009_ER-01.",
       "future": "Réparer la membrure endommagée et remplacer/réfectionner la plateforme cassée avec Circet Pylône. Intervention estimée en S43 (2 jours), à confirmer. ICP prévue le 16/10/2026 avec le SNA, Eiffage, Circet et le grutier. Attente du retour SNA et de la confirmation de tous les intervenants. Référence : 26/LFBO/0009_ER-01.",
       "effort": "light"
     },
@@ -263,7 +263,7 @@
       "category": "MCO Pylône",
       "customCategory": "",
       "title": "Limoges Cognac-la-Forêt",
-      "done": "L’intervention visant à identifier le problème sur l’une des antennes a été réalisée et le rapport a été reçu le 10/04/2026. Le dépannage du coaxial du pylône existant sur la station de Limoges Cognac-la-Forêt a été réalisé le 22/07/2026. Le rapport d'intervention a été reçu le 03/08/2026.",
+      "done": "L’intervention visant à identifier le problème sur l’une des antennes a été réalisée et le rapport a été reçu le 10/04/2026. Le dépannage du coaxial du pylône existant sur la station de Limoges Cognac-la-Forêt a été réalisé le 22/07/2026. Le rapport d'intervention a été reçu le 03/08/2026.\n• 02/02/2026 : déplacement relatif à l'intervention de dépannage sur l'une des antennes du site.",
       "future": "",
       "effort": "light"
     },
@@ -344,7 +344,7 @@
       "category": "MCO Pylône",
       "customCategory": "",
       "title": "La roche/Yon",
-      "done": "L’installation de l’antenne directive sur la station de La Roche-sur-Yon a bien été réalisée.",
+      "done": "• 10/06/2026 : déplacement à La Roche-sur-Yon dans le cadre de l'installation de l'antenne directive.\n• 28/09/2026 : déplacement pour assister à l'installation de cette antenne.\n• Installation de l'antenne directive sur la station réalisée.",
       "future": "",
       "effort": "light"
     },
@@ -452,7 +452,7 @@
       "category": "MCO Pylône",
       "customCategory": "",
       "title": "LE HAILLAN",
-      "done": "Bon de commande du diagnostic préventif et du contrôle de conformité validé et transmis à Eiffage.",
+      "done": "Bon de commande du diagnostic préventif et du contrôle de conformité validé et transmis à Eiffage.\n• 02/04/2025 : déplacement à Bordeaux pour le suivi de travaux au CES du Haillan.",
       "future": "Attente de la date d’intervention Eiffage.",
       "effort": "light"
     },
@@ -470,7 +470,7 @@
       "category": "Autre",
       "customCategory": "Nouveaux pylônes",
       "title": "Lyon CERD – nouveau pylône",
-      "done": "Le levage du pylône a été réalisé avec succès. Les mesures de qualification radio ainsi que la recette ont également été effectuées. Le DOE a été réceptionné le 12/08/2026 et transmis au SNA le jour même.",
+      "done": "• 05/08/2025 : visite d'étude à Lyon pour l'implantation du pylône destiné à accueillir deux antennes UHF, l'installation des baies UHF dans le local technique, le câblage et la tranchée.\n• 04/12/2025 : déplacement au CERD de Lyon pour le suivi de l'installation du nouveau pylône.\n• 07–10/07/2026 : déplacement pour assister au levage du pylône et aux mesures de qualification radio.\n• Levage effectué avec succès ; mesures de qualification radio et recette réalisées.\n• 12/08/2026 : DOE réceptionné et transmis au SNA le même jour.",
       "future": "",
       "effort": "light"
     },
@@ -479,7 +479,7 @@
       "category": "Autre",
       "customCategory": "Nouveaux pylônes",
       "title": "Limoges – Cognac-la-Forêt – nouveau pylône",
-      "done": "",
+      "done": "• 02/02/2026 : déplacement à Limoges – Cognac-la-Forêt pour assister à l'ouverture du chantier du nouveau pylône.",
       "future": "Fabrication des antennes : prévue en S44 Fabrication du pylône : prévue en S46 Recettes usine du pylône : S47 Transport, assemblage du pylône, pose des antennes et des coaxiaux au sol : entre S48 et S50 Levage du pylône : S50 Finition des installations, raccordements des équipements et vérifications du pylône : entre S51 et S52. Contrôle de conformité par un organisme agréé : entre S51 et S52, avec l’APAVE comme organisme de contrôle. Mesures de qualification radio et de découplage : S53 Remise des dossiers contractuels : S01 2027 Dépose du pylône et des massifs d’ancrage de l’ancienne installation : entre S05 et S08 2027 Recette finale : S10 2027",
       "effort": "light"
     },
@@ -488,7 +488,7 @@
       "category": "Autre",
       "customCategory": "Rénovation station",
       "title": "Tanville – local technique",
-      "done": "Suivi de l’installation du TBT 24V, des chargeurs 24V, de trois nouvelles baies VHF réception, d’une nouvelle baie UHF émission/réception, d’une nouvelle baie cavité VHF, d’une nouvelle baie cavité UHF, de la nouvelle baie de brassage, de la baie automate (supervision), de la baie convertisseurs 24/48V et de la baie opérateur sur la station. L’ouverture du chantier a été réalisée le 29/06/2026, et le basculement énergétique a été réalisé en semaine 40.",
+      "done": "Suivi de la rénovation du local technique : TBT 24 V, chargeurs 24 V, trois baies VHF réception, baie UHF émission/réception, baies cavités VHF et UHF, baie de brassage, baie automate (supervision), baie convertisseurs 24/48 V et baie opérateur.\n• 18/09/2025 : déplacement consacré au suivi de l'installation des équipements et des baies.\n• 23/04/2026 : déplacement pour la réception usine des chargeurs 24 V.\n• 29/06/2026 : ouverture du chantier.\n• 21–23/07/2026 : déplacement pour assister à la recette du TBT 24 V et suivre les travaux du local technique.\n• 15–18/09/2026 : déplacement pour la mise en service des chargeurs et le suivi de la rénovation.\n• S40/2026 : basculement énergétique réalisé.",
       "future": "",
       "effort": "heavy"
     },
@@ -502,15 +502,6 @@
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-deplacement-01",
-      "category": "Autre",
-      "customCategory": "Déplacements effectués",
-      "title": "02/04/25 - Bordeaux",
-      "done": "Suivi des travaux au CES de Haillan.",
-      "future": "",
-      "effort": "light"
-    },
-    {
       "id": "menouer-20261013-deplacement-02",
       "category": "Autre",
       "customCategory": "Déplacements effectués",
@@ -520,119 +511,11 @@
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-deplacement-03",
-      "category": "Autre",
-      "customCategory": "Déplacements effectués",
-      "title": "04/06/25 - Col del Tap",
-      "done": "Suivi chantier EIFFAGE - Remplacement des ampoules de balisage.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-deplacement-04",
-      "category": "Autre",
-      "customCategory": "Déplacements effectués",
-      "title": "05/08/25 - Lyon",
-      "done": "L’objectif de cette visite est d’étudier l’installation du pylône sur lequel nous envisageons d’installer deux antennes UHF, ainsi que l’installation des baies UHF dans le local technique, le câblage nécessaire et la réalisation de la tranchée.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-deplacement-05",
-      "category": "Autre",
-      "customCategory": "Déplacements effectués",
-      "title": "18/09/25 - Tanville",
-      "done": "Installation du TBT 24V, des chargeurs 24V, de trois nouvelles baies VHF réception, d’une nouvelle baie UHF émission/réception, d’une nouvelle baie cavité VHF, d’une nouvelle baie cavité UHF, de la nouvelle baie de brassage, de la baie automate (supervision), de la baie convertisseurs 24/48V et de la baie opérateur.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-deplacement-06",
-      "category": "Autre",
-      "customCategory": "Déplacements effectués",
-      "title": "16/10/25 - Col del Tap",
-      "done": "Suivi chantier EIFFAGE.",
-      "future": "",
-      "effort": "light"
-    },
-    {
       "id": "menouer-20261013-deplacement-07",
       "category": "Autre",
       "customCategory": "Déplacements effectués",
       "title": "04/11/25 - Coulange",
       "done": "Recevoir et tester le prototype d’antenne Rayan.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-deplacement-08",
-      "category": "Autre",
-      "customCategory": "Déplacements effectués",
-      "title": "04/12/25 - CERD à Lyon",
-      "done": "L’installation d’un nouveau pylône.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-deplacement-09",
-      "category": "Autre",
-      "customCategory": "Déplacements effectués",
-      "title": "02/02/26 - Limoges Cognac-la-Forêt",
-      "done": "L’objectif de cette mission est d’assister à l’ouverture du chantier pour l’installation d’un nouveau pylône, ainsi qu’à l’intervention de dépannage sur l’une des antennes.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-deplacement-10",
-      "category": "Autre",
-      "customCategory": "Déplacements effectués",
-      "title": "23/04/26 - Tanville",
-      "done": "réception usine des chargeurs 24V.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-deplacement-11",
-      "category": "Autre",
-      "customCategory": "Déplacements effectués",
-      "title": "10/06/26 - La roche/Yon",
-      "done": "Installation d’une antenne directive.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-deplacement-12",
-      "category": "Autre",
-      "customCategory": "Déplacements effectués",
-      "title": "Entre le 07/07/2026 et le 10/07/2026 - Lyon",
-      "done": "Assister au levage du pylône ainsi qu’aux mesures de qualification radio.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-deplacement-13",
-      "category": "Autre",
-      "customCategory": "Déplacements effectués",
-      "title": "Entre le 21/07/2026 et le 23/07/2026 - Tanville",
-      "done": "• Assister à la recette TBT 24V. • Suivre les travaux de rénovation du local technique.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-deplacement-14",
-      "category": "Autre",
-      "customCategory": "Déplacements effectués",
-      "title": "Entre le 15/09/2026 et le 18/09/2026 - Tanville",
-      "done": "• Mise en service des chargeurs. • Suivre les travaux de rénovation du local technique.",
-      "future": "",
-      "effort": "light"
-    },
-    {
-      "id": "menouer-20261013-deplacement-15",
-      "category": "Autre",
-      "customCategory": "Déplacements effectués",
-      "title": "28/09/26 - La roche/Yon",
-      "done": "Assister à l’installation de l’antenne directive.",
       "future": "",
       "effort": "light"
     },
