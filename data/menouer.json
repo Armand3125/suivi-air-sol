@@ -484,15 +484,6 @@
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-reno-tanville",
-      "category": "Autre",
-      "customCategory": "Rénovation station",
-      "title": "Tanville – local technique",
-      "done": "Suivi de la rénovation du local technique : TBT 24 V, chargeurs 24 V, trois baies VHF réception, baie UHF émission/réception, baies cavités VHF et UHF, baie de brassage, baie automate (supervision), baie convertisseurs 24/48 V et baie opérateur.\n• 18/09/2025 : déplacement consacré au suivi de l'installation des équipements et des baies.\n• 23/04/2026 : déplacement pour la réception usine des chargeurs 24 V.\n• 29/06/2026 : ouverture du chantier.\n• 21–23/07/2026 : déplacement pour assister à la recette du TBT 24 V et suivre les travaux du local technique.\n• 15–18/09/2026 : déplacement pour la mise en service des chargeurs et le suivi de la rénovation.\n• S40/2026 : basculement énergétique réalisé.",
-      "future": "Poursuivre le pilotage et le suivi de l’installation\n du TBT 24V, des chargeurs 24V, de trois nouvelles baies VHF réception, \nd’une nouvelle baie UHF émission/réception, d’une nouvelle baie cavité \nVHF, d’une nouvelle baie cavité UHF, de la nouvelle baie de brassage, de\n la baie automate (supervision), de la baie convertisseurs 24/48V et de \nla baie opérateur sur la station de Tanville.",
-      "effort": "heavy"
-    },
-    {
       "id": "id_t6gopiu0",
       "category": "Autre",
       "customCategory": "test",
