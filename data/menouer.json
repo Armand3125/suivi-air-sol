@@ -482,6 +482,15 @@
       "done": "C'est pas gentil d’être méchant",
       "future": "",
       "effort": "heavy"
+    },
+    {
+      "id": "id_7mutuocf",
+      "category": "CATIA Toulouse",
+      "customCategory": "",
+      "title": "Trop fort",
+      "done": "Très fort sur le piratage monsieur. Armand Julien ne sera pas très content.",
+      "future": "Armand Julien se défendra.",
+      "effort": "heavy"
     }
   ]
 }
