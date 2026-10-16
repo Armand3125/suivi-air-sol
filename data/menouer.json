@@ -475,15 +475,6 @@
       "effort": "light"
     },
     {
-      "id": "menouer-20261013-nouveau-lyon",
-      "category": "Autre",
-      "customCategory": "Nouveaux pylônes",
-      "title": "Lyon CERD – nouveau pylône",
-      "done": "• 05/08/2025 : visite d'étude à Lyon pour l'implantation du pylône destiné à accueillir deux antennes UHF, l'installation des baies UHF dans le local technique, le câblage et la tranchée.\n• 04/12/2025 : déplacement au CERD de Lyon pour le suivi de l'installation du nouveau pylône.\n• 07–10/07/2026 : déplacement pour assister au levage du pylône et aux mesures de qualification radio.\n• Levage effectué avec succès ; mesures de qualification radio et recette réalisées.\n• 12/08/2026 : DOE réceptionné et transmis au SNA le même jour.",
-      "future": "",
-      "effort": "light"
-    },
-    {
       "id": "id_t6gopiu0",
       "category": "Autre",
       "customCategory": "test",
