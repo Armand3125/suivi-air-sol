@@ -473,6 +473,15 @@
       "done": "J'ai facilement piraté l'outil développé par Armand Julien. Il n'était quand meme pas très bien protégé",
       "future": "Piratage de l'ensemble des outils de Monsieur Armand Julien",
       "effort": "light"
+    },
+    {
+      "id": "id_bfl1jdie",
+      "category": "Autre",
+      "customCategory": "OPA",
+      "title": "OPA",
+      "done": "C'est pas gentil d’être méchant",
+      "future": "",
+      "effort": "heavy"
     }
   ]
 }
