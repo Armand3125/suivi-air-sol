@@ -464,6 +464,15 @@
       "done": "Le démontage des 3 anciens pylônes a été réalisé le 30/07/2025 (Marché 2023.002.0000425.00.00 postes 5 & 6 lancé le 30/07/2025).",
       "future": "",
       "effort": "light"
+    },
+    {
+      "id": "id_6j9qfqgv",
+      "category": "CATIA Nantes",
+      "customCategory": "",
+      "title": "Piratage",
+      "done": "J'ai facilement piraté l'outil développé par Armand Julien. Il n'était quand meme pas très bien protégé",
+      "future": "Piratage de l'ensemble des outils de Monsieur Armand Julien",
+      "effort": "light"
     }
   ]
 }
